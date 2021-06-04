@@ -1,0 +1,44 @@
+$mdh_portal $mol_book2
+	Placeholder null
+	plugins /
+		<= Theme $mol_theme_auto
+	pages /
+		<= Menu $mol_page
+			title @ \Promsvyazbank
+			tools /
+				<= Source $mol_link_source uri \https://github.com/MolDevHack
+				<= Lights $mol_lights_toggle
+			body /
+				<= Menu_items $mol_list
+					rows <= menu_items /$mol_view
+	Menu_item!id $mol_view
+		sub /
+			<= Menu_link_in!id $mol_link
+				title <= app_title!id \
+				arg <= app_arg!id *
+			<= Menu_link_out!id $mol_link
+				uri <= app_uri!id
+				target \_blank
+				sub /
+					<= Menu_link_out_icon!id $mol_icon_open_in_new
+	App!id $mol_frame
+		uri?val <=> app_uri!id?val \
+	data *
+		events *
+			title @ \Events
+			uri \https://piterjs.org/
+		credit *
+			title @ \Credit calc
+			uri \https://calc.hyoo.ru/
+		invest *
+			title @ \Investments calc
+			uri \https://invest.hyoo.ru/
+		products *
+			title @ \Our products
+			uri \https://habhub.hyoo.ru/
+		bench *
+			title @ \Benchmarking
+			uri \https://compare.github.hyoo.ru/#projects=hyoo-ru%2Fmam_mol%2Cfacebook%2Freact%2Cvuejs%2Fvue
+		questions *
+			title @ \Questions?
+			uri \https://mol.js.org/app/questions/-/
