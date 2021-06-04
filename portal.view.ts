@@ -25,10 +25,13 @@ namespace $.$$ {
 
 		@ $mol_mem_key
 		app_uri( app: string, next?: string ) {
+			const suffix =  '/mol_lights=' + ( this.$.$mol_lights() ? 'on' : 'off' )
 			if( this.app() === app ) {
-				return this.$.$mol_state_arg.value( 'uri', next ) ?? this.data()[ app ].uri
+				if( next ) next = next.replace( /\/mol_lights=(on|off)/, '' )
+				const uri = this.$.$mol_state_arg.value( 'uri', next  )
+				return ( uri ?? this.data()[ app ].uri ) + suffix
 			} else {
-				return this.data()[ app ].uri
+				return this.data()[ app ].uri + suffix
 			}
 		}
 

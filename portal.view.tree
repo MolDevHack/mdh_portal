@@ -26,19 +26,19 @@ $psb_portal $mol_book2
 	data *
 		events *
 			title @ \Events
-			uri \https://piterjs.org/
+			uri \https://piterjs.org/#
 		credit *
 			title @ \Credit calc
-			uri \https://calc.hyoo.ru/
+			uri \https://calc.hyoo.ru/#
 		invest *
 			title @ \Investments calc
-			uri \https://invest.hyoo.ru/
+			uri \https://invest.hyoo.ru/#
 		products *
 			title @ \Our products
-			uri \https://habhub.hyoo.ru/
+			uri \https://habhub.hyoo.ru/#
 		bench *
 			title @ \Benchmarking
 			uri \https://compare.github.hyoo.ru/#projects=hyoo-ru%2Fmam_mol%2Cfacebook%2Freact%2Cvuejs%2Fvue
 		questions *
 			title @ \Questions?
-			uri \https://mol.js.org/app/questions/-/
+			uri \https://mol.js.org/app/questions/-/#
