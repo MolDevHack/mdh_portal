@@ -1671,6 +1671,10 @@ declare namespace $ {
         Menu_item(id: any): $mol_view;
         App(id: any): $$.$mol_frame;
         data(): {
+            cards: {
+                title: string;
+                uri: string;
+            };
             events: {
                 title: string;
                 uri: string;

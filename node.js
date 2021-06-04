@@ -5409,6 +5409,10 @@ var $;
         }
         data() {
             return {
+                cards: {
+                    title: this.$.$mol_locale.text('$psb_portal_data_cards_title'),
+                    uri: "https://moldevhack.github.io/psb_cards/#"
+                },
                 events: {
                     title: this.$.$mol_locale.text('$psb_portal_data_events_title'),
                     uri: "https://piterjs.org/#"
