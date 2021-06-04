@@ -24,6 +24,9 @@ $psb_portal $mol_book2
 	App!id $mol_frame
 		uri?val <=> app_uri!id?val \
 	data *
+		cards *
+			title @ \Cards
+			uri \https://moldevhack.github.io/psb_cards/#
 		events *
 			title @ \Events
 			uri \https://piterjs.org/#
