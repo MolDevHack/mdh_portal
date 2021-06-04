@@ -1,6 +1,6 @@
 namespace $.$$ {
 
-	export class $mdh_portal extends $.$mdh_portal {
+	export class $psb_portal extends $.$psb_portal {
 
 		app() {
 			return this.$.$mol_state_arg.value( 'app' )

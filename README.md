@@ -1,3 +1,3 @@
-# $mdh_portal
+# $psb_portal
 
 One app to rule others

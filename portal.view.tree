@@ -1,4 +1,4 @@
-$mdh_portal $mol_book2
+$psb_portal $mol_book2
 	Placeholder null
 	plugins /
 		<= Theme $mol_theme_auto

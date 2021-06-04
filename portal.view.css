@@ -1,11 +1,11 @@
-[mdh_portal_menu] {
+[psb_portal_menu] {
 	flex: 0 0 25rem;
 }
 
-[mdh_portal_menu_link_in] {
+[psb_portal_menu_link_in] {
 	flex-grow: 1;
 }
 
-[mdh_portal_app] {
+[psb_portal_app] {
 	flex: 1 0 25rem;
 }
