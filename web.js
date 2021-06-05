@@ -15828,7 +15828,7 @@ var $;
             },
             App: {
                 flex: {
-                    grow: 1,
+                    grow: 10000,
                     shrink: 0,
                     basis: rem(25),
                 },
