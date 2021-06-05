@@ -3906,10 +3906,6 @@ declare namespace $ {
                 title: string;
                 uri: string;
             };
-            events: {
-                title: string;
-                uri: string;
-            };
             credits: {
                 title: string;
                 uri: string;
@@ -3918,11 +3914,7 @@ declare namespace $ {
                 title: string;
                 uri: string;
             };
-            products: {
-                title: string;
-                uri: string;
-            };
-            bench: {
+            events: {
                 title: string;
                 uri: string;
             };
