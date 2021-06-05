@@ -1699,6 +1699,10 @@ declare namespace $ {
                 title: string;
                 uri: string;
             };
+            tech: {
+                title: string;
+                uri: string;
+            };
         };
         Theme(): $$.$mol_theme_auto;
         Source(): $mol_link_source;
