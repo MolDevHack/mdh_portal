@@ -3928,10 +3928,13 @@ declare namespace $ {
             };
         };
         Theme(): $$.$mol_theme_auto;
+        Logo(): $mol_image;
         Source(): $mol_link_source;
         Lights(): $$.$mol_lights_toggle;
         menu_items(): readonly $mol_view[];
         Menu_items(): $$.$mol_list;
+        Menu_title(): $mol_view;
+        Menu_tools(): $mol_view;
         Menu(): $$.$mol_page;
         app_title(id: any): string;
         app_arg(id: any): {};

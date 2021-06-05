@@ -1029,6 +1029,13 @@ $psb_portal $mol_book2
 	pages /
 		<= Menu $mol_page
 			title @ \Promsvyazbank
+			Title => Menu_title
+			Tools => Menu_tools
+			head /
+				<= Logo $mol_image
+					uri \psb/portal/portal_logo.svg
+				<= Menu_title
+				<= Menu_tools
 			tools /
 				<= Source $mol_link_source uri \https://github.com/MolDevHack
 				<= Lights $mol_lights_toggle

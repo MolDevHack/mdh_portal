@@ -13160,7 +13160,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("hyoo/calc/calc.view.css", "[hyoo_calc_title_edit]:enabled {\n\tcolor: inherit;\n\tbackground: transparent;\n\twidth: auto;\n\tflex: 1000 1 auto;\n\tbox-shadow: none;\n\tpadding: .5rem;\n}\n\n[hyoo_calc_current] {\n\tflex: none;\n}\n\n[hyoo_calc_pos] {\n\tflex: none;\n\twidth: 2.5rem;\n\tfont-family: var(--mol_skin_font_monospace);\n}\t\n\n[hyoo_calc_hint] {\n\tmax-width: none;\n}\n\n[hyoo_calc_hint_trigger] {\n\talign-items: center;\n}\n\n[hyoo_calc_body] {\n\talign-self: stretch;\n\tflex: auto;\n}\n\n[hyoo_calc_col_head] ,\n[hyoo_calc_row_head] {\n\tfont-family: var(--mol_skin_font_monospace);\n\tbackground: var(--mol_theme_back);\n\tcolor: var(--mol_theme_shade);\n\tuser-select: none;\n\tfont-weight: inherit;\n}\n\n[hyoo_calc_col_head] {\n\ttext-align: left;\n}\n\n[hyoo_calc_row_head] {\n\tmin-width: 2ch;\n\ttext-align: right;\n}\n\n[hyoo_calc_cell] {\n\tuser-select: text;\n\tbackground: var(--mol_theme_back);\n}\n\n[hyoo_calc_cell_selected] {\n\tbox-shadow: 0 0 0 1px var(--mol_theme_focus);\n\tz-index: 1;\n}\n\n[hyoo_calc_cell_type=\"number\"] {\n\ttext-align: right;\n}\n");
+    $.$mol_style_attach("hyoo/calc/calc.view.css", "[hyoo_calc_title_edit]:enabled {\n\tcolor: inherit;\n\tbackground: transparent;\n\twidth: auto;\n\tflex: 1000 1 auto;\n\tbox-shadow: none;\n\tpadding: .5rem;\n}\n\n[hyoo_calc_current] {\n\tflex: none;\n}\n\n[hyoo_calc_pos] {\n\tflex: none;\n\twidth: 2.5rem;\n\tfont-family: var(--mol_skin_font_monospace);\n}\t\n\n[hyoo_calc_hint] {\n\tmax-width: none;\n}\n\n[hyoo_calc_hint_trigger] {\n\talign-items: center;\n}\n\n[hyoo_calc_body] {\n\talign-self: stretch;\n\tflex: auto;\n\tpadding: 0;\n}\n\n[hyoo_calc_col_head] ,\n[hyoo_calc_row_head] {\n\tfont-family: var(--mol_skin_font_monospace);\n\tbackground: var(--mol_theme_back);\n\tcolor: var(--mol_theme_shade);\n\tuser-select: none;\n\tfont-weight: inherit;\n}\n\n[hyoo_calc_col_head] {\n\ttext-align: left;\n}\n\n[hyoo_calc_row_head] {\n\tmin-width: 2ch;\n\ttext-align: right;\n}\n\n[hyoo_calc_cell] {\n\tuser-select: text;\n\tbackground: var(--mol_theme_back);\n}\n\n[hyoo_calc_cell_selected] {\n\tbox-shadow: 0 0 0 1px var(--mol_theme_focus);\n\tz-index: 1;\n}\n\n[hyoo_calc_cell_type=\"number\"] {\n\ttext-align: right;\n}\n");
 })($ || ($ = {}));
 //calc.view.css.js.map
 ;
@@ -13647,6 +13647,11 @@ var $;
             const obj = new this.$.$mol_theme_auto();
             return obj;
         }
+        Logo() {
+            const obj = new this.$.$mol_image();
+            obj.uri = () => "psb/portal/portal_logo.svg";
+            return obj;
+        }
         Source() {
             const obj = new this.$.$mol_link_source();
             obj.uri = () => "https://github.com/MolDevHack";
@@ -13664,9 +13669,20 @@ var $;
             obj.rows = () => this.menu_items();
             return obj;
         }
+        Menu_title() {
+            return this.Menu().Title();
+        }
+        Menu_tools() {
+            return this.Menu().Tools();
+        }
         Menu() {
             const obj = new this.$.$mol_page();
             obj.title = () => this.$.$mol_locale.text('$psb_portal_Menu_title');
+            obj.head = () => [
+                this.Logo(),
+                this.Menu_title(),
+                this.Menu_tools()
+            ];
             obj.tools = () => [
                 this.Source(),
                 this.Lights()
@@ -13750,6 +13766,9 @@ var $;
     ], $psb_portal.prototype, "Theme", null);
     __decorate([
         $.$mol_mem
+    ], $psb_portal.prototype, "Logo", null);
+    __decorate([
+        $.$mol_mem
     ], $psb_portal.prototype, "Source", null);
     __decorate([
         $.$mol_mem
@@ -13782,7 +13801,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("psb/portal/portal.view.css", "[psb_portal_menu] {\n\tflex: 0 0 20rem;\n}\n\n[psb_portal_menu_link_in] {\n\tflex-grow: 1;\n}\n\n[psb_portal_app] {\n\tflex: 1 0 25rem;\n}\n");
+    $.$mol_style_attach("psb/portal/portal.view.css", "[psb_portal_menu] {\n\tflex: 0 0 20rem;\n}\n\n[psb_portal_menu_title] {\n\tflex-basis: auto;\n}\n\n[psb_portal_logo] {\n\tmargin-left:.75rem;\n}\n\n[psb_portal_menu_link_in] {\n\tflex-grow: 1;\n}\n\n[psb_portal_app] {\n\tflex: 1 0 25rem;\n}\n");
 })($ || ($ = {}));
 //portal.view.css.js.map
 ;
@@ -13840,6 +13859,9 @@ var $;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //portal.view.js.map
+;
+var $node = $node || {} ; $node[ "/psb/portal/portal_logo.svg" ] = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuOTQ5MiAwTDkuOTc0NjEgMTAuMDAwM0gxOS45NDkyVjMwTDI5LjkyMzggMjAuMDI0MVYwSDE5Ljk0OTJaIiBmaWxsPSIjRjI2MTI2Ij48L3BhdGg+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTkuOTc0NiAzMEwxOS45NDkyIDIwSDkuOTc0NlYwTDAgOS45NzYxOFYzMEg5Ljk3NDZaIiBmaWxsPSIjY2NjIj48L3BhdGg+Cjwvc3ZnPgo="
+
 ;
 "use strict";
 var $;
