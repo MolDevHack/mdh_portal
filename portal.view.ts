@@ -15,11 +15,10 @@ namespace $.$$ {
 			const app = this.app()
 			return [
 				this.Menu(),
-				... app
-					? app === 'events'
-						? this.Events().pages()
-						: [ this.App( app ) ]
-					: [],
+				... !app ? []
+					: app === 'events' ? this.Events().pages()
+					: app === 'credits' ? [ this.Credits() ]
+					: [ this.App( app ) ]
 			]
 		}
 		
@@ -42,7 +41,11 @@ namespace $.$$ {
 		app_arg( app: string ) {
 			return { app, uri: null }
 		}
-
+		
+		credits_title() {
+			return this.data().credits.title
+		}
+		
 	}
 
 }
