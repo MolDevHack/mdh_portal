@@ -11323,6 +11323,771 @@ var $node = $node || {} ; $node[ "/piterjs/app/app_lines.svg" ] = "data:image/sv
 "use strict";
 var $;
 (function ($) {
+    class $mol_hotkey extends $.$mol_plugin {
+        event() {
+            return {
+                ...super.event(),
+                keydown: (event) => this.keydown(event)
+            };
+        }
+        key() {
+            return {};
+        }
+        mod_ctrl() {
+            return false;
+        }
+        mod_alt() {
+            return false;
+        }
+        mod_shift() {
+            return false;
+        }
+        keydown(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_hotkey.prototype, "keydown", null);
+    $.$mol_hotkey = $mol_hotkey;
+})($ || ($ = {}));
+//hotkey.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_hotkey extends $.$mol_hotkey {
+            key() {
+                return super.key();
+            }
+            keydown(event) {
+                if (!event)
+                    return;
+                if (event.defaultPrevented)
+                    return;
+                let name = $.$mol_keyboard_code[event.keyCode];
+                if (this.mod_ctrl() !== event.ctrlKey)
+                    return;
+                if (this.mod_alt() !== event.altKey)
+                    return;
+                if (this.mod_shift() !== event.shiftKey)
+                    return;
+                const handle = this.key()[name];
+                if (handle)
+                    handle(event);
+            }
+        }
+        $$.$mol_hotkey = $mol_hotkey;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//hotkey.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_string extends $.$mol_view {
+        dom_name() {
+            return "input";
+        }
+        enabled() {
+            return true;
+        }
+        minimal_height() {
+            return 40;
+        }
+        autocomplete() {
+            return false;
+        }
+        selection(val) {
+            if (val !== undefined)
+                return val;
+            return [];
+        }
+        auto() {
+            return [
+                this.selection_watcher()
+            ];
+        }
+        field() {
+            return {
+                ...super.field(),
+                disabled: this.disabled(),
+                value: this.value_changed(),
+                placeholder: this.hint(),
+                spellcheck: this.spellcheck(),
+                autocomplete: this.autocomplete_native(),
+                selectionEnd: this.selection_end(),
+                selectionStart: this.selection_start()
+            };
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                maxlength: this.length_max(),
+                type: this.type()
+            };
+        }
+        event() {
+            return {
+                ...super.event(),
+                input: (event) => this.event_change(event),
+                keydown: (event) => this.event_key_press(event)
+            };
+        }
+        plugins() {
+            return [
+                this.Submit()
+            ];
+        }
+        selection_watcher() {
+            return null;
+        }
+        disabled() {
+            return false;
+        }
+        value(val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
+        value_changed(val) {
+            return this.value(val);
+        }
+        hint() {
+            return "";
+        }
+        spellcheck() {
+            return false;
+        }
+        autocomplete_native() {
+            return "";
+        }
+        selection_end() {
+            return 0;
+        }
+        selection_start() {
+            return 0;
+        }
+        length_max() {
+            return Infinity;
+        }
+        type(val) {
+            if (val !== undefined)
+                return val;
+            return "text";
+        }
+        event_change(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        event_key_press(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        submit(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        Submit() {
+            const obj = new this.$.$mol_hotkey();
+            obj.key = () => ({
+                enter: (event) => this.submit(event)
+            });
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_string.prototype, "selection", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_string.prototype, "value", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_string.prototype, "type", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_string.prototype, "event_change", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_string.prototype, "event_key_press", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_string.prototype, "submit", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_string.prototype, "Submit", null);
+    $.$mol_string = $mol_string;
+})($ || ($ = {}));
+//string.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/string/string.view.css", "[mol_string] {\n\tbox-sizing: border-box;\n\toutline-offset: 0;\n\tborder: none;\n\tborder-radius: var(--mol_skin_round);\n\twhite-space: nowrap;\n\toverflow: hidden;\n\tpadding: var(--mol_gap_text);\n\ttext-align: left;\n\tposition: relative;\n\tz-index: 0;\n\tfont: inherit;\n\tflex: 1 0 auto;\n\tbackground: var(--mol_theme_field);\n\tcolor: var(--mol_theme_text);\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_line);\n}\n\n[mol_string]:disabled {\n\tbackground-color: transparent;\n}\n\n[mol_string]:focus {\n\toutline: none;\n\tz-index: 1;\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_focus);\n}\n\n[mol_string]::-ms-clear {\n\tdisplay: none;\n}\n");
+})($ || ($ = {}));
+//string.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_string extends $.$mol_string {
+            event_change(next) {
+                if (!next)
+                    return;
+                this.value(next.target.value);
+                this.selection_change(next);
+            }
+            disabled() {
+                return !this.enabled();
+            }
+            autocomplete_native() {
+                return this.autocomplete() ? 'on' : 'off';
+            }
+            selection_watcher() {
+                return new $.$mol_dom_listener(this.$.$mol_dom_context.document, 'selectionchange', event => this.selection_change(event));
+            }
+            selection_change(event) {
+                const el = this.dom_node();
+                this.selection([
+                    el.selectionStart,
+                    el.selectionEnd,
+                ]);
+            }
+            selection_start() {
+                return this.selection()[0];
+            }
+            selection_end() {
+                return this.selection()[1];
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_string.prototype, "selection_watcher", null);
+        $$.$mol_string = $mol_string;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//string.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_text_code_token extends $.$mol_dimmer {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_text_code_token_type: this.type()
+            };
+        }
+        type() {
+            return "";
+        }
+    }
+    $.$mol_text_code_token = $mol_text_code_token;
+    class $mol_text_code_token_link extends $mol_text_code_token {
+        dom_name() {
+            return "a";
+        }
+        type() {
+            return "code-link";
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                href: this.haystack(),
+                target: "_blank"
+            };
+        }
+        haystack() {
+            return "";
+        }
+    }
+    $.$mol_text_code_token_link = $mol_text_code_token_link;
+})($ || ($ = {}));
+//token.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const { hsla } = $.$mol_style_func;
+        $.$mol_style_define($.$mol_text_code_token, {
+            display: 'inline',
+            textDecoration: 'none',
+            '@': {
+                mol_text_code_token_type: {
+                    'code-keyword': {
+                        color: hsla(0, 70, 60, 1),
+                    },
+                    'code-field': {
+                        color: hsla(300, 70, 60, 1),
+                    },
+                    'code-tag': {
+                        color: hsla(330, 70, 60, 1),
+                    },
+                    'code-global': {
+                        color: hsla(210, 80, 60, 1),
+                    },
+                    'code-decorator': {
+                        color: hsla(180, 40, 60, 1),
+                    },
+                    'code-punctuation': {
+                        color: hsla(0, 0, 50, 1),
+                    },
+                    'code-string': {
+                        color: hsla(90, 40, 50, 1),
+                    },
+                    'code-number': {
+                        color: hsla(60, 70, 30, 1),
+                    },
+                    'code-call': {
+                        color: hsla(270, 60, 60, 1),
+                    },
+                    'code-link': {
+                        color: hsla(240, 60, 60, 1),
+                    },
+                    'code-comment-inline': {
+                        opacity: .5,
+                    },
+                    'code-comment-block': {
+                        opacity: .5,
+                    },
+                    'code-docs': {
+                        opacity: .75,
+                    },
+                },
+            }
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//token.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_text_code_row extends $.$mol_paragraph {
+        text() {
+            return "";
+        }
+        minimal_height() {
+            return 24;
+        }
+        numb_showed() {
+            return true;
+        }
+        Numb() {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.numb()
+            ];
+            return obj;
+        }
+        Token(id) {
+            const obj = new this.$.$mol_text_code_token();
+            obj.type = () => this.token_type(id);
+            obj.haystack = () => this.token_text(id);
+            obj.needle = () => this.highlight();
+            return obj;
+        }
+        Token_link(id) {
+            const obj = new this.$.$mol_text_code_token_link();
+            obj.haystack = () => this.token_text(id);
+            obj.needle = () => this.highlight();
+            return obj;
+        }
+        numb() {
+            return 0;
+        }
+        token_type(id) {
+            return "";
+        }
+        token_text(id) {
+            return "";
+        }
+        highlight() {
+            return "";
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_text_code_row.prototype, "Numb", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_text_code_row.prototype, "Token", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_text_code_row.prototype, "Token_link", null);
+    $.$mol_text_code_row = $mol_text_code_row;
+})($ || ($ = {}));
+//row.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const { rem } = $.$mol_style_unit;
+        $.$mol_style_define($$.$mol_text_code_row, {
+            display: 'block',
+            Numb: {
+                textAlign: 'right',
+                color: $.$mol_theme.shade,
+                width: rem(3),
+                padding: {
+                    right: rem(1.5),
+                },
+                margin: {
+                    left: rem(-3),
+                },
+                display: 'inline-block',
+                whiteSpace: 'nowrap',
+                userSelect: 'none',
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//row.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_text_code_row extends $.$mol_text_code_row {
+            maximal_width() {
+                return this.text().length * this.letter_width();
+            }
+            tokens(path) {
+                const tokens = [];
+                const text = (path.length > 0)
+                    ? this.tokens(path.slice(0, path.length - 1))[path[path.length - 1]].found.slice(1, -1)
+                    : this.text();
+                this.$.$mol_syntax2_md_code.tokenize(text, (name, found, chunks) => tokens.push({ name, found, chunks }));
+                return tokens;
+            }
+            sub() {
+                return [
+                    ...this.numb_showed() ? [this.Numb()] : [],
+                    ...this.row_content([])
+                ];
+            }
+            row_content(path) {
+                return this.tokens(path).map((t, i) => this.Token([...path, i]));
+            }
+            Token(path) {
+                return this.token_type(path) === 'code-link' ? this.Token_link(path) : super.Token(path);
+            }
+            token_type(path) {
+                return this.tokens([...path.slice(0, path.length - 1)])[path[path.length - 1]].name;
+            }
+            token_content(path) {
+                const tokens = this.tokens([...path.slice(0, path.length - 1)]);
+                const token = tokens[path[path.length - 1]];
+                switch (token.name) {
+                    case 'code-string': return [
+                        token.found[0],
+                        ...this.row_content(path),
+                        token.found[token.found.length - 1],
+                    ];
+                    default: return [token.found];
+                }
+            }
+            token_text(path) {
+                const tokens = this.tokens([...path.slice(0, path.length - 1)]);
+                const token = tokens[path[path.length - 1]];
+                return token.found;
+            }
+            *view_find(check, path = []) {
+                if (check(this, this.text())) {
+                    yield [...path, this];
+                }
+            }
+        }
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_text_code_row.prototype, "tokens", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_text_code_row.prototype, "row_content", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_text_code_row.prototype, "token_type", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_text_code_row.prototype, "token_content", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_text_code_row.prototype, "token_text", null);
+        $$.$mol_text_code_row = $mol_text_code_row;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//row.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_text_code extends $.$mol_list {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_text_code_sidebar_showed: this.sidebar_showed()
+            };
+        }
+        text() {
+            return "";
+        }
+        text_lines() {
+            return [];
+        }
+        Row(id) {
+            const obj = new this.$.$mol_text_code_row();
+            obj.numb_showed = () => this.sidebar_showed();
+            obj.numb = () => this.row_numb(id);
+            obj.text = () => this.row_text(id);
+            obj.highlight = () => this.highlight();
+            return obj;
+        }
+        sidebar_showed() {
+            return false;
+        }
+        row_numb(id) {
+            return 0;
+        }
+        row_text(id) {
+            return "";
+        }
+        highlight() {
+            return "";
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_text_code.prototype, "Row", null);
+    $.$mol_text_code = $mol_text_code;
+})($ || ($ = {}));
+//code.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const { rem } = $.$mol_style_unit;
+        $.$mol_style_define($$.$mol_text_code, {
+            padding: $.$mol_gap.text,
+            whiteSpace: 'pre-wrap',
+            font: {
+                family: 'monospace',
+            },
+            '@': {
+                'mol_text_code_sidebar_showed': {
+                    true: {
+                        margin: {
+                            left: rem(3),
+                        },
+                    },
+                },
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//code.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_text_code extends $.$mol_text_code {
+            text_lines() {
+                return this.text().split('\n');
+            }
+            rows() {
+                return this.text_lines().map((_, index) => this.Row(index + 1));
+            }
+            row_text(index) {
+                return this.text_lines()[index - 1];
+            }
+            row_numb(index) {
+                return index;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_text_code.prototype, "text_lines", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_text_code.prototype, "rows", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_text_code.prototype, "row_text", null);
+        $$.$mol_text_code = $mol_text_code;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//code.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_textarea extends $.$mol_view {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_textarea_clickable: this.clickable(),
+                mol_textarea_sidebar_showed: this.sidebar_showed()
+            };
+        }
+        event() {
+            return {
+                keydown: (event) => this.press(event),
+                pointermove: (event) => this.hover(event)
+            };
+        }
+        sub() {
+            return [
+                this.Edit(),
+                this.View()
+            ];
+        }
+        clickable(val) {
+            if (val !== undefined)
+                return val;
+            return false;
+        }
+        sidebar_showed() {
+            return false;
+        }
+        press(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        hover(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+        value(val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
+        hint() {
+            return "";
+        }
+        enabled() {
+            return true;
+        }
+        length_max() {
+            return Infinity;
+        }
+        selection(val) {
+            if (val !== undefined)
+                return val;
+            return [];
+        }
+        Edit() {
+            const obj = new this.$.$mol_string();
+            obj.dom_name = () => "textarea";
+            obj.value = (val) => this.value(val);
+            obj.hint = () => this.hint();
+            obj.enabled = () => this.enabled();
+            obj.length_max = () => this.length_max();
+            obj.selection = (val) => this.selection(val);
+            return obj;
+        }
+        row_numb(index) {
+            return 0;
+        }
+        View() {
+            const obj = new this.$.$mol_text_code();
+            obj.text = () => this.value();
+            obj.render_visible_only = () => false;
+            obj.row_numb = (index) => this.row_numb(index);
+            obj.sidebar_showed = () => this.sidebar_showed();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_textarea.prototype, "clickable", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_textarea.prototype, "press", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_textarea.prototype, "hover", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_textarea.prototype, "value", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_textarea.prototype, "selection", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_textarea.prototype, "Edit", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_textarea.prototype, "View", null);
+    $.$mol_textarea = $mol_textarea;
+})($ || ($ = {}));
+//textarea.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/textarea/textarea.view.css", "[mol_textarea] {\n\tflex: 1 0 auto;\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: relative;\n\tz-index: 0;\n\tvertical-align: top;\n\tmin-height: max-content;\n\twhite-space: pre-wrap;\n}\n\n[mol_textarea_view] {\n\tpointer-events: none;\n\tz-index: 1;\n\twhite-space: inherit;\n}\n[mol_textarea_clickable] > [mol_textarea_view] {\n\tpointer-events: all;\n}\n\n[mol_textarea_edit] {\n\tfont-family: monospace;\n\tz-index: -1 !important;\n\tpadding: var(--mol_gap_text);\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\twidth: 100%;\n\theight: 100%;\n\tcolor: transparent;\n\tcaret-color: var(--mol_theme_text);\n\tresize: none;\n\twhite-space: inherit;\n\ttab-size: 4;\n\toverflow-anchor: none;\n}\n\n[mol_textarea_sidebar_showed] [mol_textarea_edit] {\n\tleft: 3rem;\n\twidth: calc( 100% - 3rem );\n}\n");
+})($ || ($ = {}));
+//textarea.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_textarea extends $.$mol_textarea {
+            indent_inc() {
+                document.execCommand('insertText', false, '\t');
+            }
+            indent_dec() {
+            }
+            hover(event) {
+                this.clickable(event.ctrlKey);
+            }
+            press(event) {
+                switch (event.keyCode) {
+                    case $.$mol_keyboard_code.tab:
+                        this.indent_inc();
+                        break;
+                    case event.shiftKey && $.$mol_keyboard_code.tab:
+                        this.indent_dec();
+                        break;
+                    default: return;
+                }
+                event.preventDefault();
+            }
+            row_numb(index) {
+                return index;
+            }
+        }
+        $$.$mol_textarea = $mol_textarea;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//textarea.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     const TextDecoder = globalThis.TextDecoder ?? $node.util.TextDecoder;
     function $mol_charset_decode(value, code = 'utf8') {
         return new TextDecoder(code).decode(value);
@@ -11739,6 +12504,82 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_icon_stored extends $.$mol_icon {
+        path() {
+            return "M10.5,17.5L7,14L8.41,12.59L10.5,14.67L15.68,9.5L17.09,10.91M10,4H14V6H10M20,6H16V4L14,2H10L8,4V6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z";
+        }
+    }
+    $.$mol_icon_stored = $mol_icon_stored;
+})($ || ($ = {}));
+//stored.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_link_lazy extends $.$mol_link {
+        uri(val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
+        uri_generated() {
+            return "";
+        }
+        current() {
+            return false;
+        }
+        event() {
+            return {
+                ...super.event(),
+                mousedown: (event) => this.generate(event)
+            };
+        }
+        generate(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_link_lazy.prototype, "uri", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_link_lazy.prototype, "generate", null);
+    $.$mol_link_lazy = $mol_link_lazy;
+})($ || ($ = {}));
+//lazy.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_link_lazy extends $.$mol_link_lazy {
+            generate(event) {
+                this.uri(this.uri_generated());
+            }
+        }
+        $$.$mol_link_lazy = $mol_link_lazy;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//lazy.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_icon_load extends $.$mol_icon {
+        path() {
+            return "M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z";
+        }
+    }
+    $.$mol_icon_load = $mol_icon_load;
+})($ || ($ = {}));
+//load.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_icon_github_circle extends $.$mol_icon {
         path() {
             return "M12,2C6.48,2 2,6.48 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21C9.5,20.77 9.5,20.14 9.5,19.31C6.73,19.91 6.14,17.97 6.14,17.97C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.76C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.81,16.41C14.17,16.72 14.5,17.33 14.5,18.26C14.5,19.6 14.5,20.68 14.5,21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12C22,6.48 17.52,2 12,2Z";
@@ -11775,6 +12616,18 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_icon_hint extends $.$mol_icon {
+        path() {
+            return "M10,19H13V22H10V19M12,2C17.35,2.22 19.68,7.62 16.5,11.67C15.67,12.67 14.33,13.33 13.67,14.17C13,15 13,16 13,17H10C10,15.33 10,13.92 10.67,12.92C11.33,11.92 12.67,11.33 13.5,10.67C15.92,8.43 15.32,5.26 12,5A3,3 0 0,0 9,8H6A6,6 0 0,1 12,2Z";
+        }
+    }
+    $.$mol_icon_hint = $mol_icon_hint;
+})($ || ($ = {}));
+//hint.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_check_icon extends $.$mol_check {
     }
     $.$mol_check_icon = $mol_check_icon;
@@ -11787,6 +12640,843 @@ var $;
     $.$mol_style_attach("mol/check/icon/icon.view.css", "[mol_check_icon][mol_check_checked] {\n\tcolor: var(--mol_theme_focus);\n}\n");
 })($ || ($ = {}));
 //icon.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_bar extends $.$mol_view {
+    }
+    $.$mol_bar = $mol_bar;
+})($ || ($ = {}));
+//bar.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/bar/bar.view.css", "[mol_bar] {\n\tdisplay: flex;\n\tbox-shadow: inset 0 0 0 1px var(--mol_theme_line);\n\tborder-radius: var(--mol_skin_round);\n}\n\n[mol_bar] > * {\n\tborder-radius: 0;\n}\n\n[mol_bar] > *:first-child {\n\tborder-top-left-radius: var(--mol_skin_round);\n\tborder-bottom-left-radius: var(--mol_skin_round);\n}\n\n[mol_bar] > *:not(:first-child) {\n\tmargin-left: 1px;\n}\n\n[mol_bar] > *:last-child {\n\tborder-top-right-radius: var(--mol_skin_round);\n\tborder-bottom-right-radius: var(--mol_skin_round);\n}\n");
+})($ || ($ = {}));
+//bar.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $hyoo_calc extends $.$mol_page {
+        formulas_default() {
+            return {};
+        }
+        formula(id, val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
+        head() {
+            return [
+                this.Title_edit(),
+                this.Tools()
+            ];
+        }
+        tools() {
+            return [
+                this.Snapshot(),
+                this.Download(),
+                this.Source()
+            ];
+        }
+        sub() {
+            return [
+                this.Head(),
+                this.Current(),
+                this.Hint(),
+                this.Body()
+            ];
+        }
+        Edit(id) {
+            const obj = new this.$.$mol_textarea();
+            obj.hint = () => "=";
+            obj.value = (val) => this.formula(id, val);
+            return obj;
+        }
+        Col_head(id) {
+            const obj = new this.$.$mol_float();
+            obj.dom_name = () => "th";
+            obj.sub = () => [
+                this.col_title(id)
+            ];
+            return obj;
+        }
+        Row_head(id) {
+            const obj = new this.$.$mol_float();
+            obj.dom_name = () => "th";
+            obj.sub = () => [
+                this.row_title(id)
+            ];
+            return obj;
+        }
+        Cell(id) {
+            const obj = new this.$.$hyoo_calc_cell();
+            obj.value = () => this.cell_content(id);
+            obj.selected = (val) => this.selected(id, val);
+            return obj;
+        }
+        plugins() {
+            return [
+                this.Theme(),
+                this.Nav()
+            ];
+        }
+        event() {
+            return {
+                paste: (event) => this.paste(event)
+            };
+        }
+        title(val) {
+            if (val !== undefined)
+                return val;
+            return this.$.$mol_locale.text('$hyoo_calc_title');
+        }
+        Title_edit() {
+            const obj = new this.$.$mol_string();
+            obj.value = (val) => this.title(val);
+            return obj;
+        }
+        snapshot_hint() {
+            return this.$.$mol_locale.text('$hyoo_calc_snapshot_hint');
+        }
+        snapshot_uri() {
+            return "";
+        }
+        Snapshot_icon() {
+            const obj = new this.$.$mol_icon_stored();
+            return obj;
+        }
+        Snapshot() {
+            const obj = new this.$.$mol_link_lazy();
+            obj.hint = () => this.snapshot_hint();
+            obj.uri_generated = () => this.snapshot_uri();
+            obj.sub = () => [
+                this.Snapshot_icon()
+            ];
+            return obj;
+        }
+        download_hint() {
+            return this.$.$mol_locale.text('$hyoo_calc_download_hint');
+        }
+        download_file() {
+            return "";
+        }
+        download_uri(val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
+        Download_icon() {
+            const obj = new this.$.$mol_icon_load();
+            return obj;
+        }
+        Download() {
+            const obj = new this.$.$mol_link_lazy();
+            obj.hint = () => this.download_hint();
+            obj.file_name = () => this.download_file();
+            obj.uri_generated = () => this.download_uri();
+            obj.sub = () => [
+                this.Download_icon()
+            ];
+            return obj;
+        }
+        Source() {
+            const obj = new this.$.$mol_link_source();
+            obj.uri = () => "https://github.com/hyoo-ru/calc.hyoo.ru";
+            return obj;
+        }
+        pos(val) {
+            if (val !== undefined)
+                return val;
+            return "A1";
+        }
+        Pos() {
+            const obj = new this.$.$mol_string();
+            obj.enabled = () => false;
+            obj.value = () => this.pos();
+            return obj;
+        }
+        Edit_current() {
+            const obj = new this.$.$mol_textarea();
+            return obj;
+        }
+        hint_showed(val) {
+            if (val !== undefined)
+                return val;
+            return false;
+        }
+        Hint_trigger_icon() {
+            const obj = new this.$.$mol_icon_hint();
+            return obj;
+        }
+        Hint_trigger() {
+            const obj = new this.$.$mol_check_icon();
+            obj.checked = (val) => this.hint_showed(val);
+            obj.Icon = () => this.Hint_trigger_icon();
+            return obj;
+        }
+        Current() {
+            const obj = new this.$.$mol_bar();
+            obj.sub = () => [
+                this.Pos(),
+                this.Edit_current(),
+                this.Hint_trigger()
+            ];
+            return obj;
+        }
+        hint() {
+            return this.$.$mol_locale.text('$hyoo_calc_hint');
+        }
+        Hint() {
+            const obj = new this.$.$mol_text();
+            obj.text = () => this.hint();
+            return obj;
+        }
+        col_ids() {
+            return [];
+        }
+        row_ids() {
+            return [];
+        }
+        head_cells() {
+            return [];
+        }
+        cells(row) {
+            return [];
+        }
+        Body() {
+            const obj = new this.$.$mol_grid();
+            obj.col_ids = () => this.col_ids();
+            obj.row_ids = () => this.row_ids();
+            obj.head_cells = () => this.head_cells();
+            obj.cells = (row) => this.cells(row);
+            return obj;
+        }
+        col_title(id) {
+            return "";
+        }
+        row_title(id) {
+            return "";
+        }
+        cell_content(id) {
+            return "";
+        }
+        selected(id, val) {
+            if (val !== undefined)
+                return val;
+            return false;
+        }
+        Theme() {
+            const obj = new this.$.$mol_theme_auto();
+            return obj;
+        }
+        current_col(val) {
+            if (val !== undefined)
+                return val;
+            return "A";
+        }
+        current_row(val) {
+            if (val !== undefined)
+                return val;
+            return 1;
+        }
+        Nav() {
+            const obj = new this.$.$mol_nav();
+            obj.mod_alt = () => true;
+            obj.keys_x = () => this.col_ids();
+            obj.keys_y = () => this.row_ids();
+            obj.current_x = (val) => this.current_col(val);
+            obj.current_y = (val) => this.current_row(val);
+            return obj;
+        }
+        paste(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_calc.prototype, "formula", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_calc.prototype, "Edit", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_calc.prototype, "Col_head", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_calc.prototype, "Row_head", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_calc.prototype, "Cell", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "title", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Title_edit", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Snapshot_icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Snapshot", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "download_uri", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Download_icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Download", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Source", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "pos", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Pos", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Edit_current", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "hint_showed", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Hint_trigger_icon", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Hint_trigger", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Current", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Hint", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Body", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $hyoo_calc.prototype, "selected", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Theme", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "current_col", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "current_row", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "Nav", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc.prototype, "paste", null);
+    $.$hyoo_calc = $hyoo_calc;
+    class $hyoo_calc_cell extends $.$mol_button {
+        dom_name() {
+            return "td";
+        }
+        sub() {
+            return [
+                this.value()
+            ];
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                hyoo_calc_cell_selected: this.selected(),
+                hyoo_calc_cell_type: this.type()
+            };
+        }
+        value() {
+            return "";
+        }
+        selected(val) {
+            if (val !== undefined)
+                return val;
+            return false;
+        }
+        type(val) {
+            if (val !== undefined)
+                return val;
+            return "";
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc_cell.prototype, "selected", null);
+    __decorate([
+        $.$mol_mem
+    ], $hyoo_calc_cell.prototype, "type", null);
+    $.$hyoo_calc_cell = $hyoo_calc_cell;
+})($ || ($ = {}));
+//calc.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_func_sandbox {
+        constructor(...contexts) {
+            this.contexts = contexts;
+        }
+        static get make() {
+            if (this._make)
+                return this._make;
+            const frame = $.$mol_dom_context.document.createElement('iframe');
+            frame.style.display = 'none';
+            $.$mol_dom_context.document.body.appendChild(frame);
+            const win = frame.contentWindow;
+            const SafeFunc = win.Function;
+            const SafeJSON = win.JSON;
+            win.eval(`
+
+				var AsyncFunction = AsyncFunction || ( async function() {} ).constructor
+				var GeneratorFunction = GeneratorFunction || ( function*() {} ).constructor
+				var AsyncGeneratorFunction = AsyncGeneratorFunction || ( async function*() {} ).constructor
+
+				Object.defineProperty( Function.prototype , 'constructor' , { value : undefined } )
+				Object.defineProperty( AsyncFunction.prototype , 'constructor' , { value : undefined } )
+				Object.defineProperty( GeneratorFunction.prototype , 'constructor' , { value : undefined } )
+				Object.defineProperty( AsyncGeneratorFunction.prototype , 'constructor' , { value : undefined } )
+				
+				delete Object.prototype.__proto__
+
+				for( const Class of [
+					String , Number , BigInt , Boolean , Array , Object , Promise , Symbol , RegExp , 
+					Window, Error , RangeError , ReferenceError , SyntaxError , TypeError ,
+					Function , AsyncFunction , GeneratorFunction , AsyncGeneratorFunction
+				] ) {
+					Object.freeze( Class )
+					Object.freeze( Class.prototype )
+				}
+
+				for( const key of Object.getOwnPropertyNames( window ) ) delete window[ key ]
+
+			`);
+            $.$mol_dom_context.document.body.removeChild(frame);
+            let context_default = {};
+            function clean(obj) {
+                for (let name of Object.getOwnPropertyNames(obj)) {
+                    context_default[name] = undefined;
+                }
+                const proto = Object.getPrototypeOf(obj);
+                if (proto)
+                    clean(proto);
+            }
+            clean(win);
+            const is_primitive = (val) => Object(val) !== val;
+            const safe_value = (val) => {
+                if (is_primitive(val))
+                    return val;
+                if (this.blacklist.has(val))
+                    return undefined;
+                if (this.whitelist.has(val))
+                    return val;
+                const str = JSON.stringify(val);
+                if (!str)
+                    return str;
+                val = SafeJSON.parse(str);
+                this.whitelist.add(val);
+                return val;
+            };
+            const safe_derived = (val) => {
+                if (is_primitive(val))
+                    return val;
+                const proxy = new Proxy(val, {
+                    get(val, field) {
+                        if (field === 'valueOf')
+                            return safe_derived(val[field]);
+                        if (field === 'toString')
+                            return safe_derived(val[field]);
+                        return safe_value(val[field]);
+                    },
+                    set() { return false; },
+                    defineProperty() { return false; },
+                    deleteProperty() { return false; },
+                    preventExtensions() { return false; },
+                    apply(val, host, args) {
+                        return safe_value(val.call(host, ...args));
+                    },
+                    construct(val, args) {
+                        return safe_value(new val(...args));
+                    },
+                });
+                this.whitelist.add(proxy);
+                return proxy;
+            };
+            return this._make = ((...contexts) => {
+                const context_merged = {};
+                for (let context of contexts) {
+                    for (let name of Object.getOwnPropertyNames(context)) {
+                        context_merged[name] = safe_derived(context[name]);
+                    }
+                }
+                const vars = Object.keys(context_merged);
+                const values = vars.map(name => context_merged[name]);
+                return (code) => {
+                    const func = new SafeFunc(...vars, '"use strict";' + code)
+                        .bind(null, ...values);
+                    return () => {
+                        const val = func();
+                        if (is_primitive(val))
+                            return val;
+                        this.whitelist.add(val);
+                        return val;
+                    };
+                };
+            }).bind(null, context_default);
+        }
+        get eval() {
+            if (this._eval)
+                return this._eval;
+            return this._eval = $mol_func_sandbox.make(...this.contexts);
+        }
+    }
+    $mol_func_sandbox.blacklist = new Set([
+        (function () { }).constructor,
+        (async function () { }).constructor,
+        (function* () { }).constructor,
+        (async function* () { }).constructor,
+        eval,
+        setTimeout,
+        setInterval,
+    ]);
+    $mol_func_sandbox.whitelist = new WeakSet();
+    $.$mol_func_sandbox = $mol_func_sandbox;
+})($ || ($ = {}));
+//sandbox.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("hyoo/calc/calc.view.css", "[hyoo_calc_title_edit]:enabled {\n\tcolor: inherit;\n\tbackground: transparent;\n\twidth: auto;\n\tflex: 1000 1 auto;\n\tbox-shadow: none;\n\tpadding: .5rem;\n}\n\n[hyoo_calc_current] {\n\tflex: none;\n}\n\n[hyoo_calc_pos] {\n\tflex: none;\n\twidth: 2.5rem;\n\tfont-family: var(--mol_skin_font_monospace);\n}\t\n\n[hyoo_calc_hint] {\n\tmax-width: none;\n}\n\n[hyoo_calc_hint_trigger] {\n\talign-items: center;\n}\n\n[hyoo_calc_body] {\n\talign-self: stretch;\n\tflex: auto;\n}\n\n[hyoo_calc_col_head] ,\n[hyoo_calc_row_head] {\n\tfont-family: var(--mol_skin_font_monospace);\n\tbackground: var(--mol_theme_back);\n\tcolor: var(--mol_theme_shade);\n\tuser-select: none;\n\tfont-weight: inherit;\n}\n\n[hyoo_calc_col_head] {\n\ttext-align: left;\n}\n\n[hyoo_calc_row_head] {\n\tmin-width: 2ch;\n\ttext-align: right;\n}\n\n[hyoo_calc_cell] {\n\tuser-select: text;\n\tbackground: var(--mol_theme_back);\n}\n\n[hyoo_calc_cell_selected] {\n\tbox-shadow: 0 0 0 1px var(--mol_theme_focus);\n\tz-index: 1;\n}\n\n[hyoo_calc_cell_type=\"number\"] {\n\ttext-align: right;\n}\n");
+})($ || ($ = {}));
+//calc.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $hyoo_calc extends $.$hyoo_calc {
+            formulas_default() {
+                return this.$.$mol_state_arg.dict();
+            }
+            formulas(next) {
+                const formulas = {};
+                let args = this.formulas_default();
+                if (next)
+                    return {
+                        ...$.$mol_mem_cached(() => this.formulas()) ?? {},
+                        ...next
+                    };
+                const ids = Object.keys(args).filter(param => this.id2coord(param));
+                for (let id of ids)
+                    formulas[id] = args[id];
+                return formulas;
+            }
+            formula_name(id) {
+                const found = /^([\p{Letter}_]*)\s*=/u.exec(this.formulas()[id]);
+                if (!found)
+                    return null;
+                return found[1];
+            }
+            refs() {
+                const formulas = this.formulas();
+                const vars = {};
+                for (const id in formulas) {
+                    const name = this.formula_name(id);
+                    if (!name)
+                        continue;
+                    if (vars[name])
+                        throw new Error(`Names conflict: ${id}, ${vars[name]}`);
+                    vars[name] = id;
+                }
+                return vars;
+            }
+            id2coord(id) {
+                const parsed = /^([A-Z]+)(\d+)$/i.exec(id);
+                if (!parsed)
+                    return null;
+                return [this.string2number(parsed[1].toUpperCase()), Number(parsed[2])];
+            }
+            coord2id(coord) {
+                return `${this.number2string(coord[0])}${coord[1]}`;
+            }
+            dimensions() {
+                const dims = {
+                    rows: 3,
+                    cols: 3,
+                };
+                for (let key of Object.keys(this.formulas())) {
+                    const coord = this.id2coord(key);
+                    const rows = coord[1] + 3;
+                    const cols = coord[0] + 3;
+                    if (rows > dims.rows)
+                        dims.rows = rows;
+                    if (cols > dims.cols)
+                        dims.cols = cols;
+                }
+                return dims;
+            }
+            col_ids() {
+                return Array(this.dimensions().cols).join(' ').split(' ').map((_, i) => i + 1);
+            }
+            row_ids() {
+                return Array(this.dimensions().rows).join(' ').split(' ').map((_, i) => i + 1);
+            }
+            number2string(numb) {
+                if (numb <= 0)
+                    return '';
+                numb--;
+                const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                let str = '';
+                do {
+                    str = letters[numb % 26] + str;
+                    numb = Math.floor(numb / 26);
+                } while (numb);
+                return str;
+            }
+            string2number(str) {
+                let numb = 0;
+                for (let symb of str.split('')) {
+                    numb = numb * 26;
+                    numb += symb.charCodeAt(0) - 65;
+                }
+                return numb + 1;
+            }
+            title(next) {
+                const title = this.$.$mol_state_arg.value(`title`, next);
+                return title == undefined ? super.title() : title;
+            }
+            col_title(id) {
+                return this.number2string(id);
+            }
+            row_title(id) {
+                return String(id);
+            }
+            head_cells() {
+                return [this.Col_head(0), ...this.col_ids().map(colId => this.Col_head(colId))];
+            }
+            cells(row_id) {
+                return [this.Row_head(row_id), ...this.col_ids().map(col_id => this.Cell(this.coord2id([col_id, row_id])))];
+            }
+            selected(id, next) {
+                return this.Cell(this.pos(next ? id : undefined)) === this.Cell(id);
+            }
+            pos(next) {
+                new $.$mol_defer($.$mol_fiber_root(() => this.Edit_current().Edit().focused(true)));
+                return next || super.pos();
+            }
+            coord(next) {
+                return this.id2coord(this.pos(next && this.coord2id(next)));
+            }
+            Edit_current() {
+                return this.Edit(this.pos());
+            }
+            current_row(next) {
+                return this.coord(next === undefined ? undefined : [this.coord()[0], next])[1];
+            }
+            current_col(next) {
+                return this.coord(next === undefined ? undefined : [next, this.coord()[1]])[0];
+            }
+            formula(id, next) {
+                return this.formulas(next === undefined ? undefined : { [id]: next || '' })[id] || '';
+            }
+            formula_current(next) {
+                return this.formula(this.pos(), next);
+            }
+            sandbox() {
+                return new $.$mol_func_sandbox(Math, {
+                    '$': new Proxy({}, { get: (_, id) => {
+                            return this.result(id);
+                        } }),
+                    '$$': new Proxy({}, { get: (_, id) => {
+                            return this.formula(id);
+                        } }),
+                    '_': new Proxy({}, { get: (_, name) => {
+                            return this.result(this.refs()[name]);
+                        } }),
+                    '__': new Proxy({}, { get: (_, name) => {
+                            return this.refs()[name];
+                        } }),
+                    'RANGE': (from, to) => this.results([from, to]),
+                    'SUM': (values) => values.reduce((accum, item) => accum + item, 0),
+                    'AVG': (values) => values.reduce((accum, item) => accum + item, 0) / values.length,
+                    'MAX': (values) => values.reduce((max, item) => item > max ? item : max, Number.NEGATIVE_INFINITY),
+                    'MIN': (values) => values.reduce((min, item) => item < min ? item : min, Number.POSITIVE_INFINITY),
+                });
+            }
+            results(range) {
+                const start = this.id2coord(range[0]);
+                const end = this.id2coord(range[1]);
+                const results = [];
+                for (let row = start[0]; row <= end[0]; ++row) {
+                    for (let col = start[1]; col <= end[1]; ++col) {
+                        results.push(this.result(this.coord2id([row, col])));
+                    }
+                }
+                return results;
+            }
+            sub() {
+                return [
+                    this.Head(),
+                    this.Current(),
+                    ...this.hint_showed() ? [this.Hint()] : [],
+                    this.Body(),
+                ];
+            }
+            hint() {
+                return super.hint().replace('{funcs}', Object.getOwnPropertyNames(Math).join(', '));
+            }
+            cell_content(id) {
+                const name = this.formula_name(id);
+                let val = this.result(id);
+                if (typeof val === 'object')
+                    val = JSON.stringify(val);
+                return name ? `${name} = ${val}` : String(val);
+            }
+            func(id) {
+                const formula = this.formula(id);
+                if (!/^([\p{Letter}_]*)?\s*=/u.test(formula))
+                    return () => formula;
+                const code = 'return ' + formula
+                    .replace(/([A-Z]+[0-9]+):([A-Z]+[0-9]+)/g, (found, from, to) => `RANGE('${from.toLowerCase()}','${to.toLowerCase()}')`)
+                    .replace(/@([A-Z]+[0-9]+)\b/g, '$$.$1')
+                    .replace(/([^.])([A-Z]+[0-9]+)\b/g, '$1$.$2')
+                    .replace(/^([\p{Letter}_]*)?\s*=/u, '');
+                return this.sandbox().eval(code);
+            }
+            result(id) {
+                const res = this.func(id)();
+                if (res === undefined)
+                    return '';
+                if (res === '')
+                    return '';
+                if (isNaN(res))
+                    return res;
+                if (res && typeof res === 'object')
+                    return JSON.stringify(res);
+                return Number(res);
+            }
+            paste(event) {
+                const table = event.clipboardData.getData('text/plain').trim().split('\n').map(row => row.split('\t'));
+                if (table.length === 1 && table[0].length === 1)
+                    return;
+                const [col_start, row_start] = this.id2coord(this.pos());
+                const patch = {};
+                for (let row in table) {
+                    for (let col in table[row]) {
+                        const id = this.coord2id([col_start + Number(col), row_start + Number(row)]);
+                        patch[id] = table[row][col];
+                    }
+                }
+                this.formulas(patch);
+                event.preventDefault();
+            }
+            snapshot_uri() {
+                return this.$.$mol_state_arg.make_link({
+                    title: this.title(),
+                    ...this.formulas(),
+                });
+            }
+            download_file() {
+                return `${this.title()}.csv`;
+            }
+            download_uri() {
+                const table = [];
+                const dims = this.dimensions();
+                for (let row = 1; row < dims.rows; ++row) {
+                    const row_data = [];
+                    table.push(row_data);
+                    for (let col = 0; col < dims.cols; ++col) {
+                        row_data[col] = String(this.result(this.coord2id([col, row])));
+                    }
+                }
+                const content = table.map(row => row.map(val => `"${val.replace(/"/g, '""')}"`).join(';')).join('\n');
+                return `data:text/csv;charset=utf-8,${encodeURIComponent(content)}`;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "formulas", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_calc.prototype, "formula_name", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "refs", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "dimensions", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "col_ids", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "row_ids", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "title", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "head_cells", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_calc.prototype, "selected", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "pos", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "coord", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_calc.prototype, "formula", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "sandbox", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_calc.prototype, "results", null);
+        __decorate([
+            $.$mol_mem
+        ], $hyoo_calc.prototype, "hint", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_calc.prototype, "cell_content", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_calc.prototype, "func", null);
+        __decorate([
+            $.$mol_mem_key
+        ], $hyoo_calc.prototype, "result", null);
+        $$.$hyoo_calc = $hyoo_calc;
+        class $hyoo_calc_cell extends $.$hyoo_calc_cell {
+            click(event) {
+                if (event)
+                    this.selected(true);
+            }
+            type() {
+                const value = this.value();
+                return isNaN(Number(value)) ? 'string' : 'number';
+            }
+        }
+        $$.$hyoo_calc_cell = $hyoo_calc_cell;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//calc.view.js.map
 ;
 "use strict";
 var $;
@@ -11906,6 +13596,12 @@ var $;
             obj.Links = () => null;
             return obj;
         }
+        Credits() {
+            const obj = new this.$.$hyoo_calc();
+            obj.title = () => this.credits_title();
+            obj.formulas_default = () => this.credits_formulas();
+            return obj;
+        }
         App_close() {
             const obj = new this.$.$mol_link();
             obj.arg = () => ({
@@ -11926,8 +13622,8 @@ var $;
                     title: this.$.$mol_locale.text('$psb_portal_data_events_title'),
                     uri: "https://piterjs.org/#"
                 },
-                credit: {
-                    title: this.$.$mol_locale.text('$psb_portal_data_credit_title'),
+                credits: {
+                    title: this.$.$mol_locale.text('$psb_portal_data_credits_title'),
                     uri: "https://calc.hyoo.ru/#!title=Кредитный%20калькулятор/A1=Сумма_кредита%20%3D%201000/B1=тыс.%20руб./A2=Годовая_ставка%20%3D%2015/B2=%25/A3=Срок_кредита%20%3D%2024/B3=мес./D1=Общая_сумма_выплат%20%3D%20_.Сумма_кредита%20*%20%28%201%20%2B%20_.Годовая_ставка%20%2F%20100%20*%20_.Срок_кредита%20%2F%2012%20%29/D3=Переплата%20%3D%20_.Общая_сумма_выплат%20-%20_.Сумма_кредита/D2=Сумма_ежемесячных_выплат%20%3D%20floor%28%20_.Общая_сумма_выплат%20%2F%20_.Срок_кредита%20%29/E1=тыс.%20руб./E2=тыс.%20руб./E3=тыс.%20руб."
                 },
                 invest: {
@@ -12015,6 +13711,25 @@ var $;
                 return val;
             return "";
         }
+        credits_title() {
+            return "";
+        }
+        credits_formulas() {
+            return {
+                A1: "Сумма_кредита = 1000",
+                A2: "Годовая_ставка = 15",
+                A3: "Срок_кредита = 24",
+                B1: "тыс. руб.",
+                B2: "%",
+                B3: "мес.",
+                D1: "Общая_сумма_выплат = _.Сумма_кредита * ( 1 + _.Годовая_ставка / 100 * _.Срок_кредита / 12 )",
+                D2: "Сумма_ежемесячных_выплат = floor( _.Общая_сумма_выплат / _.Срок_кредита )",
+                D3: "Переплата = _.Общая_сумма_выплат - _.Сумма_кредита",
+                E1: "тыс. руб.",
+                E2: "тыс. руб.",
+                E3: "тыс. руб."
+            };
+        }
         App_close_icon() {
             const obj = new this.$.$mol_icon_cross();
             return obj;
@@ -12029,6 +13744,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $psb_portal.prototype, "Events", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_portal.prototype, "Credits", null);
     __decorate([
         $.$mol_mem
     ], $psb_portal.prototype, "App_close", null);
@@ -12089,11 +13807,10 @@ var $;
                 const app = this.app();
                 return [
                     this.Menu(),
-                    ...app
-                        ? app === 'events'
-                            ? this.Events().pages()
-                            : [this.App(app)]
-                        : [],
+                    ...!app ? []
+                        : app === 'events' ? this.Events().pages()
+                            : app === 'credits' ? [this.Credits()]
+                                : [this.App(app)]
                 ];
             }
             app_title(app) {
@@ -12113,6 +13830,9 @@ var $;
             }
             app_arg(app) {
                 return { app, uri: null };
+            }
+            credits_title() {
+                return this.data().credits.title;
             }
         }
         __decorate([
