@@ -17364,50 +17364,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_after_mock_queue = [];
-    function $mol_after_mock_warp() {
-        const queue = $.$mol_after_mock_queue.splice(0);
-        for (const task of queue)
-            task();
-    }
-    $.$mol_after_mock_warp = $mol_after_mock_warp;
-    class $mol_after_mock_commmon extends $.$mol_object2 {
-        constructor(task) {
-            super();
-            this.task = task;
-            this.promise = Promise.resolve();
-            this.cancelled = false;
-            $.$mol_after_mock_queue.push(task);
-        }
-        destructor() {
-            const index = $.$mol_after_mock_queue.indexOf(this.task);
-            if (index >= 0)
-                $.$mol_after_mock_queue.splice(index, 1);
-        }
-    }
-    $.$mol_after_mock_commmon = $mol_after_mock_commmon;
-    class $mol_after_mock_timeout extends $mol_after_mock_commmon {
-        constructor(delay, task) {
-            super(task);
-            this.delay = delay;
-        }
-    }
-    $.$mol_after_mock_timeout = $mol_after_mock_timeout;
-})($ || ($ = {}));
-//mock.test.js.map
-;
-"use strict";
-var $;
-(function ($_1) {
-    $_1.$mol_test_mocks.push($ => {
-        $.$mol_after_tick = $_1.$mol_after_mock_commmon;
-    });
-})($ || ($ = {}));
-//tick.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
     $.$mol_test({
         'init with overload'() {
             class X extends $.$mol_object {
@@ -17556,6 +17512,41 @@ var $;
     });
 })($ || ($ = {}));
 //wrapper.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_after_mock_queue = [];
+    function $mol_after_mock_warp() {
+        const queue = $.$mol_after_mock_queue.splice(0);
+        for (const task of queue)
+            task();
+    }
+    $.$mol_after_mock_warp = $mol_after_mock_warp;
+    class $mol_after_mock_commmon extends $.$mol_object2 {
+        constructor(task) {
+            super();
+            this.task = task;
+            this.promise = Promise.resolve();
+            this.cancelled = false;
+            $.$mol_after_mock_queue.push(task);
+        }
+        destructor() {
+            const index = $.$mol_after_mock_queue.indexOf(this.task);
+            if (index >= 0)
+                $.$mol_after_mock_queue.splice(index, 1);
+        }
+    }
+    $.$mol_after_mock_commmon = $mol_after_mock_commmon;
+    class $mol_after_mock_timeout extends $mol_after_mock_commmon {
+        constructor(delay, task) {
+            super(task);
+            this.delay = delay;
+        }
+    }
+    $.$mol_after_mock_timeout = $mol_after_mock_timeout;
+})($ || ($ = {}));
+//mock.test.js.map
 ;
 "use strict";
 var $;
@@ -18355,6 +18346,49 @@ var $;
     });
 })($ || ($ = {}));
 //key.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test_mocks.push(context => {
+        class $mol_state_local_mock extends $.$mol_state_local {
+            static value(key, next = this.state[key], force) {
+                return this.state[key] = (next || null);
+            }
+        }
+        $mol_state_local_mock.state = {};
+        __decorate([
+            $.$mol_mem_key
+        ], $mol_state_local_mock, "value", null);
+        context.$mol_state_local = $mol_state_local_mock;
+    });
+})($ || ($ = {}));
+//local.mock.test.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_test({
+        'local get set delete'() {
+            var key = '$mol_state_local_test:' + Math.random();
+            $.$mol_assert_equal($.$mol_state_local.value(key), null);
+            $.$mol_state_local.value(key, 123);
+            $.$mol_assert_equal($.$mol_state_local.value(key), 123);
+            $.$mol_state_local.value(key, null);
+            $.$mol_assert_equal($.$mol_state_local.value(key), null);
+        },
+    });
+})($ || ($ = {}));
+//local.test.js.map
+;
+"use strict";
+var $;
+(function ($_1) {
+    $_1.$mol_test_mocks.push($ => {
+        $.$mol_after_tick = $_1.$mol_after_mock_commmon;
+    });
+})($ || ($ = {}));
+//tick.test.js.map
 ;
 "use strict";
 var $;
@@ -19787,40 +19821,6 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_test_mocks.push(context => {
-        class $mol_state_local_mock extends $.$mol_state_local {
-            static value(key, next = this.state[key], force) {
-                return this.state[key] = (next || null);
-            }
-        }
-        $mol_state_local_mock.state = {};
-        __decorate([
-            $.$mol_mem_key
-        ], $mol_state_local_mock, "value", null);
-        context.$mol_state_local = $mol_state_local_mock;
-    });
-})($ || ($ = {}));
-//local.mock.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_test({
-        'local get set delete'() {
-            var key = '$mol_state_local_test:' + Math.random();
-            $.$mol_assert_equal($.$mol_state_local.value(key), null);
-            $.$mol_state_local.value(key, 123);
-            $.$mol_assert_equal($.$mol_state_local.value(key), 123);
-            $.$mol_state_local.value(key, null);
-            $.$mol_assert_equal($.$mol_state_local.value(key), null);
-        },
-    });
-})($ || ($ = {}));
-//local.test.js.map
-;
-"use strict";
-var $;
-(function ($) {
     $.$mol_test({
         'decode utf8 string'() {
             const str = 'Hello, ΧΨΩЫ';
@@ -19873,65 +19873,34 @@ var $;
     var $$;
     (function ($$) {
         $_1.$mol_test({
-            'simple props'($) {
-                const app = $_1.$mol_view_tree_test_simple.make({ $ });
-                $_1.$mol_assert_equal(app.some(), 1);
-                $_1.$mol_assert_equal(app.bool(), true);
-                $_1.$mol_assert_equal(app.str(), 'test');
-                $_1.$mol_assert_ok(Array.isArray(app.arr()));
-                $_1.$mol_assert_ok(Array.isArray(app.arr_string()));
+            'Enable lights in apps'($) {
+                const app = new $$.$psb_portal;
+                app.$ = $.$mol_ambient({
+                    $mol_lights: () => true,
+                });
+                app.data = () => ({
+                    test: {
+                        uri: 'https://example.org/#',
+                    },
+                });
+                $_1.$mol_assert_equal(app.app_uri('test'), 'https://example.org/#/mol_lights=on');
             },
-            'default value'($) {
-                const app = $_1.$mol_view_tree_test_binding.make({ $ });
-                $_1.$mol_assert_equal(app.value(), '123');
-            },
-            'both binding'($) {
-                const app = $_1.$mol_view_tree_test_binding.make({ $ });
-                $_1.$mol_assert_ok(app.value() !== 1);
-                app.value(1);
-                $_1.$mol_assert_equal(app.value(), 1);
-            },
-            'left binding'($) {
-                const app = $_1.$mol_view_tree_test_binding.make({ $ });
-                $_1.$mol_assert_not(app.head_complete_enabled());
-                $_1.$mol_assert_not(app.enabled());
-            },
-            'sub component'($) {
-                const app = $_1.$mol_view_tree_test_binding_right.make({ $ });
-                $_1.$mol_assert_ok(app.Test() instanceof $_1.$mol_view_tree_test_binding_right_test);
-            },
-            'right binding - change owner property'($) {
-                const app = $_1.$mol_view_tree_test_binding_right.make({ $ });
-                const val = 123;
-                $_1.$mol_assert_ok(app.outer_width() !== val);
-                $_1.$mol_assert_ok(app.Test().width() !== val);
-                app.outer_width(val);
-                $_1.$mol_assert_equal(app.outer_width(), val);
-                $_1.$mol_assert_equal(app.Test().width(), val);
-            },
-            'right binding - change part property'($) {
-                const app = $_1.$mol_view_tree_test_binding_right.make({ $ });
-                const val = 123;
-                $_1.$mol_assert_ok(app.outer_width() !== val);
-                $_1.$mol_assert_ok(app.Test().width() !== val);
-                app.Test().width(val);
-                $_1.$mol_assert_equal(app.Test().width(), val);
-                $_1.$mol_assert_equal(app.outer_width(), val);
-            },
-            'attributes merging'($) {
-                const app = $_1.$mol_view_tree_test_attributes.make({ $ });
-                $_1.$mol_assert_like(app.some(), { a: 1, b: 2 });
-            },
-            'subcomponent indexed'($) {
-                const app = $_1.$mol_view_tree_test_attributes_subcomponent.make({ $ });
-                const val = 123;
-                app.page = (index) => index;
-                $_1.$mol_assert_equal(app.Page(val).Sub(), val);
+            'Disable lights in apps'($) {
+                const app = new $$.$psb_portal;
+                app.$ = $.$mol_ambient({
+                    $mol_lights: () => false,
+                });
+                app.data = () => ({
+                    test: {
+                        uri: 'https://example.org/#',
+                    },
+                });
+                $_1.$mol_assert_equal(app.app_uri('test'), 'https://example.org/#/mol_lights=off');
             },
         });
     })($$ = $_1.$$ || ($_1.$$ = {}));
 })($ || ($ = {}));
-//tree.test.js.map
+//portal.test.js.map
 ;
 "use strict";
 var $;
@@ -20082,5 +20051,71 @@ var $;
     $.$mol_jsx_view = $mol_jsx_view;
 })($ || ($ = {}));
 //view.js.map
+;
+"use strict";
+var $;
+(function ($_1) {
+    var $$;
+    (function ($$) {
+        $_1.$mol_test({
+            'simple props'($) {
+                const app = $_1.$mol_view_tree_test_simple.make({ $ });
+                $_1.$mol_assert_equal(app.some(), 1);
+                $_1.$mol_assert_equal(app.bool(), true);
+                $_1.$mol_assert_equal(app.str(), 'test');
+                $_1.$mol_assert_ok(Array.isArray(app.arr()));
+                $_1.$mol_assert_ok(Array.isArray(app.arr_string()));
+            },
+            'default value'($) {
+                const app = $_1.$mol_view_tree_test_binding.make({ $ });
+                $_1.$mol_assert_equal(app.value(), '123');
+            },
+            'both binding'($) {
+                const app = $_1.$mol_view_tree_test_binding.make({ $ });
+                $_1.$mol_assert_ok(app.value() !== 1);
+                app.value(1);
+                $_1.$mol_assert_equal(app.value(), 1);
+            },
+            'left binding'($) {
+                const app = $_1.$mol_view_tree_test_binding.make({ $ });
+                $_1.$mol_assert_not(app.head_complete_enabled());
+                $_1.$mol_assert_not(app.enabled());
+            },
+            'sub component'($) {
+                const app = $_1.$mol_view_tree_test_binding_right.make({ $ });
+                $_1.$mol_assert_ok(app.Test() instanceof $_1.$mol_view_tree_test_binding_right_test);
+            },
+            'right binding - change owner property'($) {
+                const app = $_1.$mol_view_tree_test_binding_right.make({ $ });
+                const val = 123;
+                $_1.$mol_assert_ok(app.outer_width() !== val);
+                $_1.$mol_assert_ok(app.Test().width() !== val);
+                app.outer_width(val);
+                $_1.$mol_assert_equal(app.outer_width(), val);
+                $_1.$mol_assert_equal(app.Test().width(), val);
+            },
+            'right binding - change part property'($) {
+                const app = $_1.$mol_view_tree_test_binding_right.make({ $ });
+                const val = 123;
+                $_1.$mol_assert_ok(app.outer_width() !== val);
+                $_1.$mol_assert_ok(app.Test().width() !== val);
+                app.Test().width(val);
+                $_1.$mol_assert_equal(app.Test().width(), val);
+                $_1.$mol_assert_equal(app.outer_width(), val);
+            },
+            'attributes merging'($) {
+                const app = $_1.$mol_view_tree_test_attributes.make({ $ });
+                $_1.$mol_assert_like(app.some(), { a: 1, b: 2 });
+            },
+            'subcomponent indexed'($) {
+                const app = $_1.$mol_view_tree_test_attributes_subcomponent.make({ $ });
+                const val = 123;
+                app.page = (index) => index;
+                $_1.$mol_assert_equal(app.Page(val).Sub(), val);
+            },
+        });
+    })($$ = $_1.$$ || ($_1.$$ = {}));
+})($ || ($ = {}));
+//tree.test.js.map
 
 //# sourceMappingURL=node.test.js.map
