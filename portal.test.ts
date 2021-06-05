@@ -10,9 +10,15 @@ namespace $.$$ {
 				$mol_lights: ()=> true,
 			})
 			
+			app.data = ()=> ({
+				test: {
+					uri: 'https://example.org/#',
+				},
+			}) as any
+			
 			$mol_assert_equal(
-				app.app_uri( 'tech' ),
-				'https://mol.hyoo.ru/#/mol_lights=on',
+				app.app_uri( 'test' ),
+				'https://example.org/#/mol_lights=on',
 			)
 			
 		},
@@ -25,9 +31,15 @@ namespace $.$$ {
 				$mol_lights: ()=> false,
 			})
 			
+			app.data = ()=> ({
+				test: {
+					uri: 'https://example.org/#',
+				},
+			}) as any
+			
 			$mol_assert_equal(
-				app.app_uri( 'tech' ),
-				'https://mol.hyoo.ru/#/mol_lights=off',
+				app.app_uri( 'test' ),
+				'https://example.org/#/mol_lights=off',
 			)
 			
 		},
