@@ -1,8 +1,17 @@
 namespace $.$$ {
 	
 	const {rem} = $mol_style_unit
+	const {url} = $mol_style_func
 	
 	$mol_style_define( $psb_portal, {
+		
+		Placeholder: {
+			background: {
+				image: [[ url( 'https://habrastorage.org/webt/dp/mm/jz/dpmmjzzibmacgk4547w_sdghy6i.png' ) ]],
+				repeat: 'no-repeat',
+				position: 'center',
+			},
+		},
 
 		Menu: {
 			
