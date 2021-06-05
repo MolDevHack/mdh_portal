@@ -23,6 +23,15 @@ $psb_portal $mol_book2
 					<= Menu_link_out_icon!id $mol_icon_open_in_new
 	App!id $mol_frame
 		uri?val <=> app_uri!id?val \
+	Events $piterjs_app
+		tools /
+			<= App_close
+		Now null
+		Links null
+	App_close $mol_link
+		arg * app null
+		sub /
+			<= App_close_icon $mol_icon_cross
 	data *
 		cards *
 			title @ \Cards

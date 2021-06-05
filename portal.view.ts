@@ -15,7 +15,11 @@ namespace $.$$ {
 			const app = this.app()
 			return [
 				this.Menu(),
-				... app ? [ this.App( app ) ] : [],
+				... app
+					? app === 'events'
+						? this.Events().pages()
+						: [ this.App( app ) ]
+					: [],
 			]
 		}
 		
