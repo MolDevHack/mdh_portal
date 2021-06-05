@@ -2,6 +2,14 @@
 	flex: 0 0 20rem;
 }
 
+[psb_portal_menu_title] {
+	flex-basis: auto;
+}
+
+[psb_portal_logo] {
+	margin-left:.75rem;
+}
+
 [psb_portal_menu_link_in] {
 	flex-grow: 1;
 }
