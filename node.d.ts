@@ -3883,15 +3883,15 @@ declare namespace $ {
         Credits(): $$.$hyoo_calc;
         App_close(): $$.$mol_link;
         data(): {
-            cards: {
-                title: string;
-                uri: string;
-            };
             credits: {
                 title: string;
                 uri: string;
             };
             invest: {
+                title: string;
+                uri: string;
+            };
+            cards: {
                 title: string;
                 uri: string;
             };

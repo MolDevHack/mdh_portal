@@ -13617,10 +13617,6 @@ var $;
         }
         data() {
             return {
-                cards: {
-                    title: this.$.$mol_locale.text('$psb_portal_data_cards_title'),
-                    uri: "https://moldevhack.github.io/psb_cards/#"
-                },
                 credits: {
                     title: this.$.$mol_locale.text('$psb_portal_data_credits_title'),
                     uri: "https://calc.hyoo.ru/#!title=Кредитный%20калькулятор/A1=Сумма_кредита%20%3D%201000/B1=тыс.%20руб./A2=Годовая_ставка%20%3D%2015/B2=%25/A3=Срок_кредита%20%3D%2024/B3=мес./D1=Общая_сумма_выплат%20%3D%20_.Сумма_кредита%20*%20%28%201%20%2B%20_.Годовая_ставка%20%2F%20100%20*%20_.Срок_кредита%20%2F%2012%20%29/D3=Переплата%20%3D%20_.Общая_сумма_выплат%20-%20_.Сумма_кредита/D2=Сумма_ежемесячных_выплат%20%3D%20floor%28%20_.Общая_сумма_выплат%20%2F%20_.Срок_кредита%20%29/E1=тыс.%20руб./E2=тыс.%20руб./E3=тыс.%20руб."
@@ -13628,6 +13624,10 @@ var $;
                 invest: {
                     title: this.$.$mol_locale.text('$psb_portal_data_invest_title'),
                     uri: "https://invest.hyoo.ru/#"
+                },
+                cards: {
+                    title: this.$.$mol_locale.text('$psb_portal_data_cards_title'),
+                    uri: "https://moldevhack.github.io/psb_cards/#"
                 },
                 events: {
                     title: this.$.$mol_locale.text('$psb_portal_data_events_title'),
