@@ -13605,6 +13605,15 @@ var $;
             obj.formulas_default = () => this.credits_formulas();
             return obj;
         }
+        Deposits() {
+            const obj = new this.$.$hyoo_calc();
+            obj.title = () => this.deposits_title();
+            obj.tools = () => [
+                this.App_close()
+            ];
+            obj.formulas_default = () => this.deposits_formulas();
+            return obj;
+        }
         App_close() {
             const obj = new this.$.$mol_link();
             obj.arg = () => ({
@@ -13621,9 +13630,9 @@ var $;
                     title: this.$.$mol_locale.text('$psb_portal_data_credits_title'),
                     uri: "https://calc.hyoo.ru/#!title=Кредитный%20калькулятор/A1=Сумма_кредита%20%3D%201000/B1=тыс.%20руб./A2=Годовая_ставка%20%3D%2015/B2=%25/A3=Срок_кредита%20%3D%2024/B3=мес./D1=Общая_сумма_выплат%20%3D%20_.Сумма_кредита%20*%20%28%201%20%2B%20_.Годовая_ставка%20%2F%20100%20*%20_.Срок_кредита%20%2F%2012%20%29/D3=Переплата%20%3D%20_.Общая_сумма_выплат%20-%20_.Сумма_кредита/D2=Сумма_ежемесячных_выплат%20%3D%20floor%28%20_.Общая_сумма_выплат%20%2F%20_.Срок_кредита%20%29/E1=тыс.%20руб./E2=тыс.%20руб./E3=тыс.%20руб."
                 },
-                invest: {
-                    title: this.$.$mol_locale.text('$psb_portal_data_invest_title'),
-                    uri: "https://invest.hyoo.ru/#"
+                deposits: {
+                    title: this.$.$mol_locale.text('$psb_portal_data_deposits_title'),
+                    uri: "https://calc.hyoo.ru/#!title=%D0%A0%D0%B0%D1%81%D1%87%D1%91%D1%82%20%D0%B4%D0%B5%D0%BF%D0%BE%D0%B7%D0%B8%D1%82%D0%B0/A1=%D0%A1%D1%83%D0%BC%D0%BC%D0%B0_%D0%B2%D0%BA%D0%BB%D0%B0%D0%B4%D0%B0%20%3D%201000/B1=%D1%82%D1%8B%D1%81.%20%D1%80%D1%83%D0%B1./A2=%D0%93%D0%BE%D0%B4%D0%BE%D0%B2%D0%B0%D1%8F_%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0%20%3D%205/B2=%25/A3=%D0%A1%D1%80%D0%BE%D0%BA_%D0%B2%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%3D%2012/B3=%D0%BC%D0%B5%D1%81./D1=%D0%9E%D0%B1%D1%89%D0%B0%D1%8F_%D1%81%D1%83%D0%BC%D0%BC%D0%B0_%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%3D%20_.%D0%A1%D1%83%D0%BC%D0%BC%D0%B0_%D0%B2%D0%BA%D0%BB%D0%B0%D0%B4%D0%B0%20*%20%28%201%20%2B%20_.%D0%93%D0%BE%D0%B4%D0%BE%D0%B2%D0%B0%D1%8F_%D1%81%D1%82%D0%B0%D0%B2%D0%BA%D0%B0%20%2F%20100%20*%20_.%D0%A1%D1%80%D0%BE%D0%BA_%D0%B2%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%2F%2012%20%29/D3=%D0%94%D0%BE%D1%85%D0%BE%D0%B4%20%3D%20_.%D0%9E%D0%B1%D1%89%D0%B0%D1%8F_%D1%81%D1%83%D0%BC%D0%BC%D0%B0_%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20-%20_.%D0%A1%D1%83%D0%BC%D0%BC%D0%B0_%D0%B2%D0%BA%D0%BB%D0%B0%D0%B4%D0%B0/D2=%D0%A1%D1%83%D0%BC%D0%BC%D0%B0_%D0%B5%D0%B6%D0%B5%D0%BC%D0%B5%D1%81%D1%8F%D1%87%D0%BD%D1%8B%D1%85_%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%3D%20floor%28%20_.%D0%9E%D0%B1%D1%89%D0%B0%D1%8F_%D1%81%D1%83%D0%BC%D0%BC%D0%B0_%D0%B2%D1%8B%D0%BF%D0%BB%D0%B0%D1%82%20%2F%20_.%D0%A1%D1%80%D0%BE%D0%BA_%D0%B2%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%29/E1=%D1%82%D1%8B%D1%81.%20%D1%80%D1%83%D0%B1./E2=%D1%82%D1%8B%D1%81.%20%D1%80%D1%83%D0%B1./E3=%D1%82%D1%8B%D1%81.%20%D1%80%D1%83%D0%B1."
                 },
                 cards: {
                     title: this.$.$mol_locale.text('$psb_portal_data_cards_title'),
@@ -13741,6 +13750,25 @@ var $;
                 E3: "тыс. руб."
             };
         }
+        deposits_title() {
+            return "";
+        }
+        deposits_formulas() {
+            return {
+                A1: "Сумма_вклада = 1000",
+                A2: "Годовая_ставка = 5",
+                A3: "Срок_вложения = 12",
+                B1: "тыс. руб.",
+                B2: "%",
+                B3: "мес.",
+                D1: "Общая_сумма_выплат = _.Сумма_вклада * ( 1 + _.Годовая_ставка / 100 * _.Срок_вложения / 12 )",
+                D2: "Сумма_ежемесячных_выплат = floor( _.Общая_сумма_выплат / _.Срок_вложения )",
+                D3: "Доход = _.Общая_сумма_выплат - _.Сумма_вклада",
+                E1: "тыс. руб.",
+                E2: "тыс. руб.",
+                E3: "тыс. руб."
+            };
+        }
         App_close_icon() {
             const obj = new this.$.$mol_icon_cross();
             return obj;
@@ -13758,6 +13786,9 @@ var $;
     __decorate([
         $.$mol_mem
     ], $psb_portal.prototype, "Credits", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_portal.prototype, "Deposits", null);
     __decorate([
         $.$mol_mem
     ], $psb_portal.prototype, "App_close", null);
@@ -13824,7 +13855,8 @@ var $;
                     ...!app ? []
                         : app === 'events' ? this.Events().pages()
                             : app === 'credits' ? [this.Credits()]
-                                : [this.App(app)]
+                                : app === 'deposits' ? [this.Deposits()]
+                                    : [this.App(app)]
                 ];
             }
             app_title(app) {
@@ -13847,6 +13879,9 @@ var $;
             }
             credits_title() {
                 return this.data().credits.title;
+            }
+            deposits_title() {
+                return this.data().deposits.title;
             }
         }
         __decorate([

@@ -3881,13 +3881,14 @@ declare namespace $ {
         App(id: any): $$.$mol_frame;
         Events(): $$.$piterjs_app;
         Credits(): $$.$hyoo_calc;
+        Deposits(): $$.$hyoo_calc;
         App_close(): $$.$mol_link;
         data(): {
             credits: {
                 title: string;
                 uri: string;
             };
-            invest: {
+            deposits: {
                 title: string;
                 uri: string;
             };
@@ -3938,6 +3939,21 @@ declare namespace $ {
             E2: string;
             E3: string;
         };
+        deposits_title(): string;
+        deposits_formulas(): {
+            A1: string;
+            A2: string;
+            A3: string;
+            B1: string;
+            B2: string;
+            B3: string;
+            D1: string;
+            D2: string;
+            D3: string;
+            E1: string;
+            E2: string;
+            E3: string;
+        };
         App_close_icon(): $mol_icon_cross;
     }
 }
@@ -3957,6 +3973,7 @@ declare namespace $.$$ {
             uri: null;
         };
         credits_title(): string;
+        deposits_title(): string;
     }
 }
 
