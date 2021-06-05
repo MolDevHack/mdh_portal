@@ -18,6 +18,7 @@ namespace $.$$ {
 				... !app ? []
 					: app === 'events' ? this.Events().pages()
 					: app === 'credits' ? [ this.Credits() ]
+					: app === 'deposits' ? [ this.Deposits() ]
 					: [ this.App( app ) ]
 			]
 		}
@@ -44,6 +45,10 @@ namespace $.$$ {
 		
 		credits_title() {
 			return this.data().credits.title
+		}
+		
+		deposits_title() {
+			return this.data().deposits.title
 		}
 		
 	}
