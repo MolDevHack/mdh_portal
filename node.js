@@ -32,6 +32,68 @@ $node[ "../mam" ] = $node[ "../mam.js" ] = module.exports }.call( {} , {} )
 "use strict";
 var $;
 (function ($) {
+    class $mol_decor {
+        constructor(value) {
+            this.value = value;
+        }
+        prefix() { return ''; }
+        valueOf() { return this.value; }
+        postfix() { return ''; }
+        toString() {
+            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
+        }
+    }
+    $.$mol_decor = $mol_decor;
+})($ || ($ = {}));
+//decor.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_style_unit extends $.$mol_decor {
+        constructor(value, literal) {
+            super(value);
+            this.literal = literal;
+        }
+        postfix() {
+            return this.literal;
+        }
+        static per(value) { return new $mol_style_unit(value, '%'); }
+        static px(value) { return new $mol_style_unit(value, 'px'); }
+        static mm(value) { return new $mol_style_unit(value, 'mm'); }
+        static cm(value) { return new $mol_style_unit(value, 'cm'); }
+        static Q(value) { return new $mol_style_unit(value, 'Q'); }
+        static in(value) { return new $mol_style_unit(value, 'in'); }
+        static pc(value) { return new $mol_style_unit(value, 'pc'); }
+        static pt(value) { return new $mol_style_unit(value, 'pt'); }
+        static cap(value) { return new $mol_style_unit(value, 'cap'); }
+        static ch(value) { return new $mol_style_unit(value, 'ch'); }
+        static em(value) { return new $mol_style_unit(value, 'em'); }
+        static rem(value) { return new $mol_style_unit(value, 'rem'); }
+        static ex(value) { return new $mol_style_unit(value, 'ex'); }
+        static ic(value) { return new $mol_style_unit(value, 'ic'); }
+        static lh(value) { return new $mol_style_unit(value, 'lh'); }
+        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
+        static vh(value) { return new $mol_style_unit(value, 'vh'); }
+        static vw(value) { return new $mol_style_unit(value, 'vw'); }
+        static vi(value) { return new $mol_style_unit(value, 'vi'); }
+        static vb(value) { return new $mol_style_unit(value, 'vb'); }
+        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
+        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
+        static deg(value) { return new $mol_style_unit(value, 'deg'); }
+        static rad(value) { return new $mol_style_unit(value, 'rad'); }
+        static grad(value) { return new $mol_style_unit(value, 'grad'); }
+        static turn(value) { return new $mol_style_unit(value, 'turn'); }
+        static s(value) { return new $mol_style_unit(value, 's'); }
+        static ms(value) { return new $mol_style_unit(value, 'ms'); }
+    }
+    $.$mol_style_unit = $mol_style_unit;
+})($ || ($ = {}));
+//unit.js.map
+;
+"use strict";
+var $;
+(function ($) {
     $.$mol_ambient_ref = Symbol('$mol_ambient_ref');
     function $mol_ambient(overrides) {
         return Object.setPrototypeOf(overrides, this || $);
@@ -305,68 +367,6 @@ var $;
     $.$mol_style_attach = $mol_style_attach;
 })($ || ($ = {}));
 //attach.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_decor {
-        constructor(value) {
-            this.value = value;
-        }
-        prefix() { return ''; }
-        valueOf() { return this.value; }
-        postfix() { return ''; }
-        toString() {
-            return `${this.prefix()}${this.valueOf()}${this.postfix()}`;
-        }
-    }
-    $.$mol_decor = $mol_decor;
-})($ || ($ = {}));
-//decor.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    class $mol_style_unit extends $.$mol_decor {
-        constructor(value, literal) {
-            super(value);
-            this.literal = literal;
-        }
-        postfix() {
-            return this.literal;
-        }
-        static per(value) { return new $mol_style_unit(value, '%'); }
-        static px(value) { return new $mol_style_unit(value, 'px'); }
-        static mm(value) { return new $mol_style_unit(value, 'mm'); }
-        static cm(value) { return new $mol_style_unit(value, 'cm'); }
-        static Q(value) { return new $mol_style_unit(value, 'Q'); }
-        static in(value) { return new $mol_style_unit(value, 'in'); }
-        static pc(value) { return new $mol_style_unit(value, 'pc'); }
-        static pt(value) { return new $mol_style_unit(value, 'pt'); }
-        static cap(value) { return new $mol_style_unit(value, 'cap'); }
-        static ch(value) { return new $mol_style_unit(value, 'ch'); }
-        static em(value) { return new $mol_style_unit(value, 'em'); }
-        static rem(value) { return new $mol_style_unit(value, 'rem'); }
-        static ex(value) { return new $mol_style_unit(value, 'ex'); }
-        static ic(value) { return new $mol_style_unit(value, 'ic'); }
-        static lh(value) { return new $mol_style_unit(value, 'lh'); }
-        static rlh(value) { return new $mol_style_unit(value, 'rlh'); }
-        static vh(value) { return new $mol_style_unit(value, 'vh'); }
-        static vw(value) { return new $mol_style_unit(value, 'vw'); }
-        static vi(value) { return new $mol_style_unit(value, 'vi'); }
-        static vb(value) { return new $mol_style_unit(value, 'vb'); }
-        static vmin(value) { return new $mol_style_unit(value, 'vmin'); }
-        static vmax(value) { return new $mol_style_unit(value, 'vmax'); }
-        static deg(value) { return new $mol_style_unit(value, 'deg'); }
-        static rad(value) { return new $mol_style_unit(value, 'rad'); }
-        static grad(value) { return new $mol_style_unit(value, 'grad'); }
-        static turn(value) { return new $mol_style_unit(value, 'turn'); }
-        static s(value) { return new $mol_style_unit(value, 's'); }
-        static ms(value) { return new $mol_style_unit(value, 'ms'); }
-    }
-    $.$mol_style_unit = $mol_style_unit;
-})($ || ($ = {}));
-//unit.js.map
 ;
 "use strict";
 var $;
@@ -2956,6 +2956,24 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    $.$mol_style_attach("mol/gap/gap.css", ":root {\n\t--mol_gap_block: .75rem;\n\t--mol_gap_text: .5rem .75rem;\n}\n");
+})($ || ($ = {}));
+//gap.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    const { vary } = $.$mol_style_func;
+    $.$mol_gap = {
+        block: vary('--mol_gap_block'),
+        text: vary('--mol_gap_text'),
+    };
+})($ || ($ = {}));
+//gap.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_scroll extends $.$mol_view {
         minimal_height() {
             return 0;
@@ -3434,24 +3452,6 @@ var $;
     $.$mol_offline();
 })($ || ($ = {}));
 //install.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_style_attach("mol/gap/gap.css", ":root {\n\t--mol_gap_block: .75rem;\n\t--mol_gap_text: .5rem .75rem;\n}\n");
-})($ || ($ = {}));
-//gap.css.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    const { vary } = $.$mol_style_func;
-    $.$mol_gap = {
-        block: vary('--mol_gap_block'),
-        text: vary('--mol_gap_text'),
-    };
-})($ || ($ = {}));
-//gap.js.map
 ;
 "use strict";
 var $;
@@ -13147,6 +13147,2338 @@ var $;
 "use strict";
 var $;
 (function ($) {
+    class $mol_svg_group extends $.$mol_svg {
+        dom_name() {
+            return "g";
+        }
+    }
+    $.$mol_svg_group = $mol_svg_group;
+})($ || ($ = {}));
+//group.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_graph extends $.$mol_svg_group {
+        series_x() {
+            return [];
+        }
+        series_y() {
+            return [];
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                mol_plot_graph_type: this.type()
+            };
+        }
+        style() {
+            return {
+                ...super.style(),
+                color: this.color()
+            };
+        }
+        viewport() {
+            const obj = new this.$.$mol_vector_2d(this.viewport_x(), this.viewport_y());
+            return obj;
+        }
+        shift() {
+            return [
+                0,
+                0
+            ];
+        }
+        scale() {
+            return [
+                1,
+                1
+            ];
+        }
+        cursor_position() {
+            const obj = new this.$.$mol_vector_2d(NaN, NaN);
+            return obj;
+        }
+        dimensions_pane() {
+            const obj = new this.$.$mol_vector_2d(this.dimensions_pane_x(), this.dimensions_pane_y());
+            return obj;
+        }
+        dimensions() {
+            const obj = new this.$.$mol_vector_2d(this.dimensions_x(), this.dimensions_y());
+            return obj;
+        }
+        size_real() {
+            const obj = new this.$.$mol_vector_2d(0, 0);
+            return obj;
+        }
+        gap() {
+            const obj = new this.$.$mol_vector_2d(this.gap_x(), this.gap_y());
+            return obj;
+        }
+        indexes() {
+            return [];
+        }
+        points() {
+            return [];
+        }
+        front() {
+            return [];
+        }
+        back() {
+            return [];
+        }
+        hue() {
+            return NaN;
+        }
+        Sample() {
+            return null;
+        }
+        type() {
+            return "solid";
+        }
+        color() {
+            return "";
+        }
+        viewport_x() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        viewport_y() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_pane_x() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_pane_y() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_x() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_y() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        gap_x() {
+            const obj = new this.$.$mol_vector_range(0, 0);
+            return obj;
+        }
+        gap_y() {
+            const obj = new this.$.$mol_vector_range(0, 0);
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "viewport", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "cursor_position", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "dimensions_pane", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "dimensions", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "size_real", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "gap", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "viewport_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "viewport_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "dimensions_pane_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "dimensions_pane_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "dimensions_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "dimensions_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "gap_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_graph.prototype, "gap_y", null);
+    $.$mol_plot_graph = $mol_plot_graph;
+    class $mol_plot_graph_sample extends $.$mol_view {
+        attr() {
+            return {
+                ...super.attr(),
+                mol_plot_graph_type: this.type()
+            };
+        }
+        style() {
+            return {
+                ...super.style(),
+                color: this.color()
+            };
+        }
+        type() {
+            return "solid";
+        }
+        color() {
+            return "black";
+        }
+    }
+    $.$mol_plot_graph_sample = $mol_plot_graph_sample;
+})($ || ($ = {}));
+//graph.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/graph/graph.view.css", "[mol_plot_graph] {\n\tstroke: currentColor;\n}\n\n[mol_plot_graph_sample] {\n\tborder-width: 0;\n\tborder-style: solid;\n}\n\n[mol_plot_graph_type=\"dashed\"] {\n\tstroke-dasharray: 4 4;\n\tborder-style: dashed;\n}\n");
+})($ || ($ = {}));
+//graph.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_graph extends $.$mol_plot_graph {
+            viewport() {
+                const size = this.size_real();
+                return new this.$.$mol_vector_2d(new this.$.$mol_vector_range(0, size.x), new this.$.$mol_vector_range(0, size.y));
+            }
+            points() {
+                const [shift_x, shift_y] = this.shift();
+                const [scale_x, scale_y] = this.scale();
+                const series_x = this.series_x();
+                const series_y = this.series_y();
+                return this.indexes().map(index => {
+                    const point_x = Math.round(shift_x + series_x[index] * scale_x);
+                    const point_y = Math.round(shift_y + series_y[index] * scale_y);
+                    return [point_x, point_y];
+                });
+            }
+            series_x() {
+                return this.series_y().map((val, index) => index);
+            }
+            dimensions() {
+                let next = new this.$.$mol_vector_2d($.$mol_vector_range_full.inversed, $.$mol_vector_range_full.inversed);
+                const series_x = this.series_x();
+                const series_y = this.series_y();
+                for (let i = 0; i < series_x.length; i++) {
+                    next = next.expanded1([series_x[i], series_y[i]]);
+                }
+                return next;
+            }
+            color() {
+                const hue = this.hue();
+                return hue ? `hsl( ${hue} , 100% , 35% )` : '';
+            }
+            front() {
+                return [this];
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_graph.prototype, "series_x", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_graph.prototype, "dimensions", null);
+        $$.$mol_plot_graph = $mol_plot_graph;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//graph.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_chart_legend extends $.$mol_scroll {
+        graphs() {
+            return [];
+        }
+        sub() {
+            return this.graph_legends();
+        }
+        Graph_legend(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.Graph_sample_box(id),
+                this.Graph_title(id)
+            ];
+            return obj;
+        }
+        graph_legends() {
+            return [];
+        }
+        Graph_sample(id) {
+            return null;
+        }
+        Graph_sample_box(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.Graph_sample(id)
+            ];
+            return obj;
+        }
+        graph_title(id) {
+            return "";
+        }
+        Graph_title(id) {
+            const obj = new this.$.$mol_view();
+            obj.sub = () => [
+                this.graph_title(id)
+            ];
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_chart_legend.prototype, "Graph_legend", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_chart_legend.prototype, "Graph_sample_box", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_chart_legend.prototype, "Graph_title", null);
+    $.$mol_chart_legend = $mol_chart_legend;
+})($ || ($ = {}));
+//legend.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/chart/legend/legend.view.css", "[mol_chart_legend] {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tflex-direction: row;\n\tpadding: .5rem;\n\tmargin: .5rem;\n\tflex: 0 1 auto;\n}\n\n[mol_chart_legend_graph_legend] {\n\tdisplay: flex;\n\tjustify-content: flex-start;\n\tflex: 1 1 8rem;\n\tpadding: .5rem;\n}\n\n[mol_chart_legend_graph_title] {\n\tmargin: 0 .25rem;\n\tflex: 1 1 auto;\n}\n\n[mol_chart_legend_graph_sample_box] {\n\tposition: relative;\n\twidth: 1.5rem;\n\tflex: none;\n}\n");
+})($ || ($ = {}));
+//legend.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_chart_legend extends $.$mol_chart_legend {
+            graphs_front() {
+                return this.graphs().filter(graph => graph.Sample());
+            }
+            graph_legends() {
+                return this.graphs_front().map((graph, index) => this.Graph_legend(index));
+            }
+            graph_title(index) {
+                return this.graphs_front()[index].title();
+            }
+            Graph_sample(index) {
+                return this.graphs_front()[index].Sample();
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_chart_legend.prototype, "graphs_front", null);
+        $$.$mol_chart_legend = $mol_chart_legend;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//legend.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_pane extends $.$mol_svg_root {
+        aspect() {
+            return "none";
+        }
+        hue_base(val) {
+            if (val !== undefined)
+                return val;
+            return NaN;
+        }
+        hue_shift(val) {
+            if (val !== undefined)
+                return val;
+            return 111;
+        }
+        gap_hor() {
+            return 48;
+        }
+        gap_vert() {
+            return 24;
+        }
+        gap_left() {
+            return this.gap_hor();
+        }
+        gap_right() {
+            return this.gap_hor();
+        }
+        gap_top() {
+            return this.gap_vert();
+        }
+        gap_bottom() {
+            return this.gap_vert();
+        }
+        gap() {
+            const obj = new this.$.$mol_vector_2d(this.gap_x(), this.gap_y());
+            return obj;
+        }
+        shift_limit() {
+            const obj = new this.$.$mol_vector_2d(this.shift_limit_x(), this.shift_limit_y());
+            return obj;
+        }
+        shift_default() {
+            return [
+                0,
+                0
+            ];
+        }
+        shift(val) {
+            if (val !== undefined)
+                return val;
+            return [
+                0,
+                0
+            ];
+        }
+        scale_limit() {
+            const obj = new this.$.$mol_vector_2d(this.scale_limit_x(), this.scale_limit_y());
+            return obj;
+        }
+        scale_default() {
+            return [
+                0,
+                0
+            ];
+        }
+        scale(val) {
+            if (val !== undefined)
+                return val;
+            return [
+                1,
+                1
+            ];
+        }
+        scale_x(val) {
+            if (val !== undefined)
+                return val;
+            return 0;
+        }
+        scale_y(val) {
+            if (val !== undefined)
+                return val;
+            return 0;
+        }
+        size() {
+            const obj = new this.$.$mol_vector_2d(0, 0);
+            return obj;
+        }
+        size_real() {
+            const obj = new this.$.$mol_vector_2d(1, 1);
+            return obj;
+        }
+        dimensions_viewport() {
+            const obj = new this.$.$mol_vector_2d(this.dimensions_viewport_x(), this.dimensions_viewport_y());
+            return obj;
+        }
+        dimensions() {
+            const obj = new this.$.$mol_vector_2d(this.dimensions_x(), this.dimensions_y());
+            return obj;
+        }
+        sub() {
+            return this.graphs_sorted();
+        }
+        graphs_colored() {
+            return this.graphs_positioned();
+        }
+        cursor_position(val) {
+            if (val !== undefined)
+                return val;
+            const obj = new this.$.$mol_vector_2d(NaN, NaN);
+            return obj;
+        }
+        plugins() {
+            return [
+                ...super.plugins(),
+                this.Meter(),
+                this.Touch()
+            ];
+        }
+        event() {
+            return {
+                ...super.event(),
+                dblclick: (event) => this.reset(event)
+            };
+        }
+        gap_x() {
+            const obj = new this.$.$mol_vector_range(this.gap_left(), this.gap_right());
+            return obj;
+        }
+        gap_y() {
+            const obj = new this.$.$mol_vector_range(this.gap_bottom(), this.gap_top());
+            return obj;
+        }
+        shift_limit_x() {
+            const obj = new this.$.$mol_vector_range(0, 0);
+            return obj;
+        }
+        shift_limit_y() {
+            const obj = new this.$.$mol_vector_range(0, 0);
+            return obj;
+        }
+        scale_limit_x() {
+            const obj = new this.$.$mol_vector_range(0, Infinity);
+            return obj;
+        }
+        scale_limit_y() {
+            const obj = new this.$.$mol_vector_range(0, Infinity);
+            return obj;
+        }
+        dimensions_viewport_x() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_viewport_y() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_x() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        dimensions_y() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        graphs_sorted() {
+            return [];
+        }
+        graphs() {
+            return [];
+        }
+        graphs_positioned() {
+            return this.graphs();
+        }
+        width() {
+            return this.Meter().width();
+        }
+        height() {
+            return this.Meter().height();
+        }
+        Meter() {
+            const obj = new this.$.$mol_meter();
+            return obj;
+        }
+        Touch() {
+            const obj = new this.$.$mol_touch();
+            obj.zoom = (val) => this.scale_x(val);
+            obj.pan = (val) => this.shift(val);
+            obj.pos = (val) => this.cursor_position(val);
+            return obj;
+        }
+        reset(event) {
+            if (event !== undefined)
+                return event;
+            return null;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "hue_base", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "hue_shift", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "gap", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "shift_limit", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "shift", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "scale_limit", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "scale", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "scale_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "scale_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "size", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "size_real", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "dimensions_viewport", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "dimensions", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "cursor_position", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "gap_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "gap_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "shift_limit_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "shift_limit_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "scale_limit_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "scale_limit_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "dimensions_viewport_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "dimensions_viewport_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "dimensions_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "dimensions_y", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "Meter", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "Touch", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_pane.prototype, "reset", null);
+    $.$mol_plot_pane = $mol_plot_pane;
+})($ || ($ = {}));
+//pane.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/pane/pane.view.css", "[mol_plot_pane] {\n\tflex: 1 1 auto;\n\talign-self: stretch;\n\tstroke-width: 2px;\n}\n");
+})($ || ($ = {}));
+//pane.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_pane extends $.$mol_plot_pane {
+            constructor() {
+                super(...arguments);
+                this.graph_touched = false;
+            }
+            dimensions() {
+                const graphs = this.graphs();
+                let next = new this.$.$mol_vector_2d($.$mol_vector_range_full.inversed, $.$mol_vector_range_full.inversed);
+                for (let graph of graphs) {
+                    next = next.expanded2(graph.dimensions());
+                }
+                return next;
+            }
+            size() {
+                const dims = this.dimensions();
+                return new this.$.$mol_vector_2d((dims.x.max - dims.x.min) || 1, (dims.y.max - dims.y.min) || 1);
+            }
+            graph_hue(index) {
+                return (360 + (this.hue_base() + this.hue_shift() * index) % 360) % 360;
+            }
+            graphs_colored() {
+                const graphs = this.graphs_positioned();
+                for (let index = 0; index < graphs.length; index++) {
+                    graphs[index].hue = () => this.graph_hue(index);
+                }
+                return graphs;
+            }
+            size_real() {
+                return new this.$.$mol_vector_2d(this.width(), this.height());
+            }
+            view_box() {
+                const size = this.size_real();
+                return `0 0 ${size.x} ${size.y}`;
+            }
+            scale_limit() {
+                const { x: { max: right }, y: { max: top } } = super.scale_limit();
+                const gap = this.gap();
+                const size = this.size();
+                const real = this.size_real();
+                const left = +(real.x - gap.x.min - gap.x.max) / size.x;
+                const bottom = -(real.y - gap.y.max - gap.y.min) / size.y;
+                return new this.$.$mol_vector_2d(new this.$.$mol_vector_range(left, right), new this.$.$mol_vector_range(bottom, top));
+            }
+            scale_default() {
+                const limits = this.scale_limit();
+                return [limits.x.min, limits.y.min];
+            }
+            scale(next, force) {
+                if (next === undefined) {
+                    if (!this.graph_touched)
+                        return this.scale_default();
+                    next = $.$mol_mem_cached(() => this.scale()) || this.scale_default();
+                }
+                this.graph_touched = true;
+                return new this.$.$mol_vector_2d(...next).limited(this.scale_limit());
+            }
+            scale_x(next) {
+                return this.scale(next === undefined ? undefined : [next, this.scale()[1]])[0];
+            }
+            scale_y(next) {
+                return this.scale(next === undefined ? undefined : [this.scale()[0], next])[1];
+            }
+            shift_limit() {
+                const dims = this.dimensions();
+                const [scale_x, scale_y] = this.scale();
+                const size = this.size_real();
+                const gap = this.gap();
+                const left = gap.x.min - dims.x.min * scale_x;
+                const right = size.x - gap.x.max - dims.x.max * scale_x;
+                const top = gap.y.max - dims.y.max * scale_y;
+                const bottom = size.y - gap.y.min - dims.y.min * scale_y;
+                return new this.$.$mol_vector_2d(new this.$.$mol_vector_range(right, left), new this.$.$mol_vector_range(bottom, top));
+            }
+            shift_default() {
+                const limits = this.shift_limit();
+                return [limits.x.min, limits.y.min];
+            }
+            shift(next, force) {
+                if (next === undefined) {
+                    if (!this.graph_touched)
+                        return this.shift_default();
+                    next = $.$mol_mem_cached(() => this.shift()) || this.shift_default();
+                }
+                this.graph_touched = true;
+                return new this.$.$mol_vector_2d(...next).limited(this.shift_limit());
+            }
+            reset(event) {
+                this.graph_touched = false;
+                this.scale(this.scale_default(), $.$mol_mem_force_cache);
+                this.shift(this.shift_default(), $.$mol_mem_force_cache);
+            }
+            graphs_positioned() {
+                const graphs = this.graphs();
+                for (let graph of graphs) {
+                    graph.shift = () => this.shift();
+                    graph.scale = () => this.scale();
+                    graph.dimensions_pane = () => this.dimensions();
+                    graph.viewport = () => this.viewport();
+                    graph.size_real = () => this.size_real();
+                    graph.cursor_position = () => this.cursor_position();
+                    graph.gap = () => this.gap();
+                }
+                return graphs;
+            }
+            viewport() {
+                const size = this.size_real();
+                return new this.$.$mol_vector_2d(new this.$.$mol_vector_range(0, size.x), new this.$.$mol_vector_range(0, size.y));
+            }
+            graphs_sorted() {
+                const graphs = this.graphs_colored();
+                const sorted = [];
+                for (let graph of graphs)
+                    sorted.push(...graph.back());
+                for (let graph of graphs)
+                    sorted.push(...graph.front());
+                return sorted;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "dimensions", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "size", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "graphs_colored", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "scale_limit", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "scale", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "shift_limit", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "shift_default", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "shift", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "graphs_positioned", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "viewport", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_pane.prototype, "graphs_sorted", null);
+        $$.$mol_plot_pane = $mol_plot_pane;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//pane.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_chart extends $.$mol_view {
+        gap_hor() {
+            return 48;
+        }
+        gap_vert() {
+            return 24;
+        }
+        gap_left() {
+            return this.gap_hor();
+        }
+        gap_right() {
+            return this.gap_hor();
+        }
+        gap_bottom() {
+            return this.gap_vert();
+        }
+        gap_top() {
+            return this.gap_vert();
+        }
+        graphs() {
+            return [];
+        }
+        sub() {
+            return [
+                this.Legend(),
+                this.Plot()
+            ];
+        }
+        Legend() {
+            const obj = new this.$.$mol_chart_legend();
+            obj.graphs = () => this.graphs_colored();
+            return obj;
+        }
+        hue_base() {
+            return 140;
+        }
+        hue_shift() {
+            return 111;
+        }
+        graphs_colored() {
+            return this.Plot().graphs_colored();
+        }
+        Plot() {
+            const obj = new this.$.$mol_plot_pane();
+            obj.gap_left = () => this.gap_left();
+            obj.gap_right = () => this.gap_right();
+            obj.gap_bottom = () => this.gap_bottom();
+            obj.gap_top = () => this.gap_top();
+            obj.graphs = () => this.graphs();
+            obj.hue_base = () => this.hue_base();
+            obj.hue_shift = () => this.hue_shift();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_chart.prototype, "Legend", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_chart.prototype, "Plot", null);
+    $.$mol_chart = $mol_chart;
+})($ || ($ = {}));
+//chart.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/chart/chart.view.css", "[mol_chart] {\n\tdisplay: flex;\n\tflex-direction: column;\n\talign-self: stretch;\n\tflex: 1 1 auto;\n\tpadding: .5rem;\n}\n\n[mol_chart_plot] {\n\tflex: 1 0 50%;\n\tmargin: .5rem;\n}\n");
+})($ || ($ = {}));
+//chart.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_fill extends $.$mol_plot_graph {
+        threshold() {
+            return 4;
+        }
+        spacing() {
+            return 2;
+        }
+        sub() {
+            return [
+                this.Curve()
+            ];
+        }
+        Sample() {
+            const obj = new this.$.$mol_plot_graph_sample();
+            obj.color = () => this.color();
+            return obj;
+        }
+        curve() {
+            return "";
+        }
+        Curve() {
+            const obj = new this.$.$mol_svg_path();
+            obj.geometry = () => this.curve();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_fill.prototype, "Sample", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_fill.prototype, "Curve", null);
+    $.$mol_plot_fill = $mol_plot_fill;
+})($ || ($ = {}));
+//fill.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/fill/fill.view.css", "[mol_plot_fill] {\n\tstroke: none;\n\tstroke-width: 0;\n\topacity: .1;\n\tfill: currentColor;\n}\n\n[mol_plot_fill_sample] {\n\topacity: .1;\n\tbackground: currentColor;\n\tposition: absolute;\n\tbottom: 0;\n\ttop: .75em;\n\tleft: 0;\n\tright: 0;\n}\n");
+})($ || ($ = {}));
+//fill.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_fill extends $.$mol_plot_fill {
+            indexes() {
+                const threshold = this.threshold();
+                const { x: { min: viewport_left, max: viewport_right }, y: { min: viewport_bottom, max: viewport_top }, } = this.viewport();
+                const [shift_x, shift_y] = this.shift();
+                const [scale_x, scale_y] = this.scale();
+                const indexes = [];
+                let last = [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY];
+                let first_x = null;
+                let first_y = null;
+                let last_x = null;
+                let last_y = null;
+                const series_x = this.series_x();
+                const series_y = this.series_y();
+                for (let i = 0; i < series_x.length; i++) {
+                    const scaled = [
+                        Math.round(shift_x + series_x[i] * scale_x),
+                        Math.round(shift_y + series_y[i] * scale_y),
+                    ];
+                    if (Math.abs(scaled[0] - last[0]) < threshold
+                        && Math.abs(scaled[1] - last[1]) < threshold)
+                        continue;
+                    last = scaled;
+                    if (scaled[0] < viewport_left) {
+                        first_x = i;
+                        continue;
+                    }
+                    if (scaled[1] < viewport_bottom) {
+                        first_y = i;
+                        continue;
+                    }
+                    if (scaled[0] > viewport_right) {
+                        last_x = i;
+                        continue;
+                    }
+                    if (scaled[1] > viewport_top) {
+                        last_y = i;
+                        continue;
+                    }
+                    if (first_x !== null)
+                        indexes.push(first_x);
+                    if (first_y !== null)
+                        indexes.push(first_y);
+                    indexes.push(i);
+                    if (last_x !== null)
+                        indexes.push(last_x);
+                    if (last_y !== null)
+                        indexes.push(last_y);
+                    first_x = first_y = last_x = last_y = null;
+                }
+                if (first_x !== null)
+                    indexes.push(first_x);
+                if (first_y !== null)
+                    indexes.push(first_y);
+                if (last_x !== null)
+                    indexes.push(last_x);
+                if (last_y !== null)
+                    indexes.push(last_y);
+                return indexes;
+            }
+            curve() {
+                const points = this.points();
+                if (points.length === 0)
+                    return '';
+                const [, shift_y] = this.shift();
+                const main = points.map(point => `L ${point.join(' ')}`).join(' ');
+                return `M ${points[0].join(' ')} ${main} V ${shift_y} H ${points[0][0]}`;
+            }
+            back() {
+                return [this];
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_fill.prototype, "indexes", null);
+        $$.$mol_plot_fill = $mol_plot_fill;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//fill.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_line extends $.$mol_plot_graph {
+        threshold() {
+            return 1;
+        }
+        spacing() {
+            return 2;
+        }
+        color_fill() {
+            return "none";
+        }
+        sub() {
+            return [
+                this.Curve()
+            ];
+        }
+        Sample() {
+            const obj = new this.$.$mol_plot_graph_sample();
+            obj.color = () => this.color();
+            obj.type = () => this.type();
+            return obj;
+        }
+        curve() {
+            return "";
+        }
+        Curve() {
+            const obj = new this.$.$mol_svg_path();
+            obj.geometry = () => this.curve();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_line.prototype, "Sample", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_line.prototype, "Curve", null);
+    $.$mol_plot_line = $mol_plot_line;
+})($ || ($ = {}));
+//line.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/line/line.view.css", "[mol_plot_line] {\n\tcolor: var(--mol_skin_base);\n\tfill: none;\n\tstroke-linejoin: round;\n}\n\n[mol_plot_line_sample] {\n\theight: 0;\n\tleft: 0;\n\tright: 0;\n\tbottom: 0;\n\tborder-width: 2px 0 0;\n\tposition: absolute;\n\ttop: .75em;\n\ttransform: translateY(-50%);\n}\n");
+})($ || ($ = {}));
+//line.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_line extends $.$mol_plot_line {
+            indexes() {
+                const threshold = this.threshold();
+                const { x: { min: viewport_left, max: viewport_right }, y: { min: viewport_bottom, max: viewport_top }, } = this.viewport();
+                const [shift_x, shift_y] = this.shift();
+                const [scale_x, scale_y] = this.scale();
+                const indexes = [];
+                let last = [Number.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY];
+                let first_x = null;
+                let first_y = null;
+                let last_x = null;
+                let last_y = null;
+                const series_x = this.series_x();
+                const series_y = this.series_y();
+                for (let i = 0; i < series_x.length; i++) {
+                    const scaled = [
+                        Math.round(shift_x + series_x[i] * scale_x),
+                        Math.round(shift_y + series_y[i] * scale_y),
+                    ];
+                    if (Math.abs(scaled[0] - last[0]) < threshold
+                        && Math.abs(scaled[1] - last[1]) < threshold)
+                        continue;
+                    last = scaled;
+                    if (scaled[0] < viewport_left) {
+                        first_x = i;
+                        continue;
+                    }
+                    if (scaled[1] < viewport_bottom) {
+                        first_y = i;
+                        continue;
+                    }
+                    if (scaled[0] > viewport_right) {
+                        if (last_x === null)
+                            last_x = i;
+                        continue;
+                    }
+                    if (scaled[1] > viewport_top) {
+                        if (last_y === null)
+                            last_y = i;
+                        continue;
+                    }
+                    if (first_x !== null)
+                        indexes.push(first_x);
+                    if (first_y !== null)
+                        indexes.push(first_y);
+                    indexes.push(i);
+                    if (last_x !== null)
+                        indexes.push(last_x);
+                    if (last_y !== null)
+                        indexes.push(last_y);
+                    first_x = first_y = last_x = last_y = null;
+                }
+                if (first_x !== null)
+                    indexes.push(first_x);
+                if (first_y !== null)
+                    indexes.push(first_y);
+                if (last_x !== null)
+                    indexes.push(last_x);
+                if (last_y !== null)
+                    indexes.push(last_y);
+                return indexes;
+            }
+            curve() {
+                const points = this.points();
+                if (points.length === 0)
+                    return '';
+                const main = points.map(point => `L ${point.join(' ')}`).join(' ');
+                return `M ${points[0].join(' ')} ${main}`;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_line.prototype, "indexes", null);
+        $$.$mol_plot_line = $mol_plot_line;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//line.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_dot extends $.$mol_plot_graph {
+        points_max() {
+            return Infinity;
+        }
+        style() {
+            return {
+                ...super.style(),
+                "stroke-width": this.diameter()
+            };
+        }
+        sub() {
+            return [
+                this.Curve()
+            ];
+        }
+        Sample() {
+            const obj = new this.$.$mol_plot_graph_sample();
+            obj.color = () => this.color();
+            return obj;
+        }
+        diameter() {
+            return 8;
+        }
+        curve() {
+            return "";
+        }
+        Curve() {
+            const obj = new this.$.$mol_svg_path();
+            obj.geometry = () => this.curve();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_dot.prototype, "Sample", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_dot.prototype, "Curve", null);
+    $.$mol_plot_dot = $mol_plot_dot;
+})($ || ($ = {}));
+//dot.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_coord_pack(a, b) {
+        return a << 16 | b & 0xFFFF;
+    }
+    $.$mol_coord_pack = $mol_coord_pack;
+    function $mol_coord_high(key) {
+        return key >> 16;
+    }
+    $.$mol_coord_high = $mol_coord_high;
+    function $mol_coord_low(key) {
+        return (key & 0xFFFF) << 16 >> 16;
+    }
+    $.$mol_coord_low = $mol_coord_low;
+})($ || ($ = {}));
+//coord.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/dot/dot.view.css", "[mol_plot_dot] {\n\tcolor: var(--mol_skin_base);\n\tstroke-linecap: round;\n\tfill: none;\n}\n\n[mol_plot_dot_sample] {\n\twidth: .5rem;\n\theight: .5rem;\n\tborder-radius: 1rem;\n\tbackground: currentColor;\n\tposition: absolute;\n\ttop: .75em;\n\tleft: 50%;\n\ttransform: translate(-50%, -50%);\n}\n");
+})($ || ($ = {}));
+//dot.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_dot extends $.$mol_plot_dot {
+            filled() {
+                return new Set();
+            }
+            indexes() {
+                const radius = this.diameter() / 2;
+                const points_max = this.points_max();
+                const viewport = this.viewport();
+                const viewport_left = viewport.x.min - radius;
+                const viewport_right = viewport.x.max + radius;
+                const viewport_bottom = viewport.y.min - radius;
+                const viewport_top = viewport.y.max + radius;
+                const [shift_x, shift_y] = this.shift();
+                const [scale_x, scale_y] = this.scale();
+                let last_x = Number.NEGATIVE_INFINITY;
+                let last_y = Number.NEGATIVE_INFINITY;
+                let spacing = 0;
+                let filled = this.filled();
+                let indexes;
+                const series_x = this.series_x();
+                const series_y = this.series_y();
+                do {
+                    indexes = [];
+                    for (let i = 0; i < series_x.length; i++) {
+                        const point_x = series_x[i];
+                        const point_y = series_y[i];
+                        const scaled_x = Math.round(shift_x + point_x * scale_x);
+                        const scaled_y = Math.round(shift_y + point_y * scale_y);
+                        if (Math.abs(scaled_x - last_x) < radius
+                            && Math.abs(scaled_y - last_y) < radius)
+                            continue;
+                        last_x = scaled_x;
+                        last_y = scaled_y;
+                        if (scaled_x < viewport_left)
+                            continue;
+                        if (scaled_y < viewport_bottom)
+                            continue;
+                        if (scaled_x > viewport_right)
+                            continue;
+                        if (scaled_y > viewport_top)
+                            continue;
+                        if (spacing !== 0) {
+                            const key = $.$mol_coord_pack(Math.round(point_x * scale_x / spacing) * spacing, Math.round(point_y * scale_y / spacing) * spacing);
+                            if (filled.has(key))
+                                continue;
+                            filled.add(key);
+                        }
+                        indexes.push(i);
+                        if (indexes.length > points_max)
+                            break;
+                    }
+                    spacing += Math.ceil(radius);
+                    filled.clear();
+                } while (indexes.length > points_max);
+                return indexes;
+            }
+            curve() {
+                const points = this.points();
+                if (points.length === 0)
+                    return '';
+                return points.map(point => `M ${point.join(' ')} v 0`).join(' ');
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_dot.prototype, "filled", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_dot.prototype, "indexes", null);
+        $$.$mol_plot_dot = $mol_plot_dot;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//dot.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_group extends $.$mol_plot_graph {
+        sub() {
+            return this.graphs_enriched();
+        }
+        Sample() {
+            const obj = new this.$.$mol_plot_graph_sample();
+            obj.sub = () => this.graph_samples();
+            return obj;
+        }
+        graphs() {
+            return [];
+        }
+        graphs_enriched() {
+            return this.graphs();
+        }
+        graph_samples() {
+            return [];
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_group.prototype, "Sample", null);
+    $.$mol_plot_group = $mol_plot_group;
+})($ || ($ = {}));
+//group.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_group extends $.$mol_plot_group {
+            graphs_enriched() {
+                const graphs = this.graphs();
+                for (let graph of graphs) {
+                    graph.shift = () => this.shift();
+                    graph.scale = () => this.scale();
+                    graph.size_real = () => this.size_real();
+                    graph.hue = () => this.hue();
+                    graph.series_x = () => this.series_x();
+                    graph.series_y = () => this.series_y();
+                    graph.dimensions_pane = () => this.dimensions_pane();
+                    graph.viewport = () => this.viewport();
+                    graph.cursor_position = () => this.cursor_position();
+                    graph.gap = () => this.gap();
+                }
+                return graphs;
+            }
+            dimensions() {
+                const graphs = this.graphs();
+                let next = new this.$.$mol_vector_2d($.$mol_vector_range_full.inversed, $.$mol_vector_range_full.inversed);
+                for (let graph of graphs) {
+                    next = next.expanded2(graph.dimensions());
+                }
+                return next;
+            }
+            graph_samples() {
+                return this.graphs_enriched().map(graph => graph.Sample());
+            }
+            back() {
+                const graphs = this.graphs_enriched();
+                const next = [];
+                for (let graph of graphs)
+                    next.push(...graph.back());
+                return next;
+            }
+            front() {
+                const graphs = this.graphs_enriched();
+                const next = [];
+                for (let graph of graphs)
+                    next.push(...graph.front());
+                return next;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_group.prototype, "graphs_enriched", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_group.prototype, "dimensions", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_group.prototype, "graph_samples", null);
+        $$.$mol_plot_group = $mol_plot_group;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//group.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_svg_text extends $.$mol_svg {
+        dom_name() {
+            return "text";
+        }
+        pos() {
+            return [];
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                x: this.pos_x(),
+                y: this.pos_y(),
+                "text-anchor": this.align()
+            };
+        }
+        sub() {
+            return [
+                this.text()
+            ];
+        }
+        pos_x() {
+            return "";
+        }
+        pos_y() {
+            return "";
+        }
+        align() {
+            return "middle";
+        }
+        text() {
+            return "";
+        }
+    }
+    $.$mol_svg_text = $mol_svg_text;
+})($ || ($ = {}));
+//text.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/svg/text/text.view.css", "[mol_svg_text] {\n\tfill: currentColor;\n\tstroke: none;\n}\n");
+})($ || ($ = {}));
+//text.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_svg_text extends $.$mol_svg_text {
+            pos_x() {
+                return this.pos()[0];
+            }
+            pos_y() {
+                return this.pos()[1];
+            }
+        }
+        $$.$mol_svg_text = $mol_svg_text;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//text.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_svg_rect extends $.$mol_svg {
+        dom_name() {
+            return "rect";
+        }
+        pos() {
+            return [];
+        }
+        attr() {
+            return {
+                ...super.attr(),
+                width: this.width(),
+                height: this.height(),
+                x: this.pos_x(),
+                y: this.pos_y()
+            };
+        }
+        width() {
+            return "0";
+        }
+        height() {
+            return "0";
+        }
+        pos_x() {
+            return "";
+        }
+        pos_y() {
+            return "";
+        }
+    }
+    $.$mol_svg_rect = $mol_svg_rect;
+})($ || ($ = {}));
+//rect.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_svg_rect extends $.$mol_svg_rect {
+            pos_x() {
+                return this.pos()[0];
+            }
+            pos_y() {
+                return this.pos()[1];
+            }
+        }
+        $$.$mol_svg_rect = $mol_svg_rect;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//rect.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_svg_text_box extends $.$mol_svg_group {
+        font_size() {
+            return 16;
+        }
+        width() {
+            return 0;
+        }
+        sub() {
+            return [
+                this.Back(),
+                this.Text()
+            ];
+        }
+        box_width() {
+            return "0.5rem";
+        }
+        box_height() {
+            return "1rem";
+        }
+        box_pos_x() {
+            return this.pos_x();
+        }
+        box_pos_y() {
+            return "0";
+        }
+        Back() {
+            const obj = new this.$.$mol_svg_rect();
+            obj.width = () => this.box_width();
+            obj.height = () => this.box_height();
+            obj.pos = () => [
+                this.box_pos_x(),
+                this.box_pos_y()
+            ];
+            return obj;
+        }
+        pos_x() {
+            return "0";
+        }
+        pos_y() {
+            return "100%";
+        }
+        align() {
+            return "start";
+        }
+        text() {
+            return "";
+        }
+        Text() {
+            const obj = new this.$.$mol_svg_text();
+            obj.pos = () => [
+                this.pos_x(),
+                this.pos_y()
+            ];
+            obj.align = () => this.align();
+            obj.sub = () => [
+                this.text()
+            ];
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_svg_text_box.prototype, "Back", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_svg_text_box.prototype, "Text", null);
+    $.$mol_svg_text_box = $mol_svg_text_box;
+})($ || ($ = {}));
+//box.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    let canvas;
+    function $mol_font_canvas(next = canvas) {
+        if (!next)
+            next = $.$mol_dom_context.document.createElement('canvas').getContext('2d');
+        return canvas = next;
+    }
+    $.$mol_font_canvas = $mol_font_canvas;
+})($ || ($ = {}));
+//canvas.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_font_measure(size, face, text) {
+        const canvas = $.$mol_font_canvas();
+        canvas.font = size + 'px ' + face;
+        return canvas.measureText(text).width;
+    }
+    $.$mol_font_measure = $mol_font_measure;
+})($ || ($ = {}));
+//measure.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/svg/text/box/box.view.css", "[mol_svg_text_box_back] {\n\tstroke: none;\n\tfill: var(--mol_theme_back);\n}\n");
+})($ || ($ = {}));
+//box.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_svg_text_box extends $.$mol_svg_text_box {
+            box_width() {
+                return `${this.width()}px`;
+            }
+            width() {
+                return $.$mol_font_measure(this.font_size(), this.font_family(), this.text());
+            }
+            box_pos_x() {
+                const align = this.align();
+                if (align === 'end')
+                    return `calc(${this.pos_x()} - ${this.width()})`;
+                if (align === 'middle')
+                    return `calc(${this.pos_x()} - ${Math.round(this.width() / 2)})`;
+                return this.pos_x();
+            }
+            box_pos_y() {
+                return `calc(${this.pos_y()} - ${this.font_size() - 2})`;
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_svg_text_box.prototype, "width", null);
+        $$.$mol_svg_text_box = $mol_svg_text_box;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//box.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_ruler extends $.$mol_plot_graph {
+        step() {
+            return 0;
+        }
+        scale_axis() {
+            return 1;
+        }
+        scale_step() {
+            return 1;
+        }
+        shift_axis() {
+            return 1;
+        }
+        dimensions_axis() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        viewport_axis() {
+            const obj = new this.$.$mol_vector_range(Infinity, -Infinity);
+            return obj;
+        }
+        axis_points() {
+            return [];
+        }
+        normalize(val) {
+            if (val !== undefined)
+                return val;
+            return 0;
+        }
+        precision() {
+            return 1;
+        }
+        sub() {
+            return [
+                this.Background(),
+                this.Curve(),
+                this.labels_formatted(),
+                this.Title()
+            ];
+        }
+        Label(index) {
+            const obj = new this.$.$mol_svg_text();
+            obj.pos = () => this.label_pos(index);
+            obj.text = () => this.label_text(index);
+            obj.align = () => this.label_align();
+            return obj;
+        }
+        background_x() {
+            return "0";
+        }
+        background_y() {
+            return "0";
+        }
+        background_width() {
+            return "100%";
+        }
+        background_height() {
+            return "14";
+        }
+        Background() {
+            const obj = new this.$.$mol_svg_rect();
+            obj.pos_x = () => this.background_x();
+            obj.pos_y = () => this.background_y();
+            obj.width = () => this.background_width();
+            obj.height = () => this.background_height();
+            return obj;
+        }
+        curve() {
+            return "";
+        }
+        Curve() {
+            const obj = new this.$.$mol_svg_path();
+            obj.geometry = () => this.curve();
+            return obj;
+        }
+        labels_formatted() {
+            return [];
+        }
+        title_pos_x() {
+            return "0";
+        }
+        title_pos_y() {
+            return "100%";
+        }
+        title_align() {
+            return "start";
+        }
+        Title() {
+            const obj = new this.$.$mol_svg_text_box();
+            obj.pos_x = () => this.title_pos_x();
+            obj.pos_y = () => this.title_pos_y();
+            obj.align = () => this.title_align();
+            obj.text = () => this.title();
+            return obj;
+        }
+        label_pos_x(index) {
+            return "";
+        }
+        label_pos_y(index) {
+            return "";
+        }
+        label_pos(index) {
+            return [
+                this.label_pos_x(index),
+                this.label_pos_y(index)
+            ];
+        }
+        label_text(index) {
+            return "";
+        }
+        label_align() {
+            return "";
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_ruler.prototype, "dimensions_axis", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_ruler.prototype, "viewport_axis", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_ruler.prototype, "normalize", null);
+    __decorate([
+        $.$mol_mem_key
+    ], $mol_plot_ruler.prototype, "Label", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_ruler.prototype, "Background", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_ruler.prototype, "Curve", null);
+    __decorate([
+        $.$mol_mem
+    ], $mol_plot_ruler.prototype, "Title", null);
+    $.$mol_plot_ruler = $mol_plot_ruler;
+})($ || ($ = {}));
+//ruler.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_math_round_expand(val, gap = 1) {
+        if (val === 0)
+            return 0;
+        const val_abs = Math.abs(val);
+        const val_sign = val ? Math.round(val / val_abs) : 0;
+        const digits = Math.floor(Math.log(val_abs) / Math.log(10));
+        const precission = Math.pow(10, digits - gap);
+        const val_expanded = precission * Math.ceil(val_abs / precission);
+        return val_sign * val_expanded;
+    }
+    $.$mol_math_round_expand = $mol_math_round_expand;
+})($ || ($ = {}));
+//expand.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/ruler/ruler.view.css", "[mol_plot_ruler_curve] {\n\tcolor: var(--mol_theme_line);\n\tstroke-width: 1px;\n\tstroke: currentColor;\n}\n\n[mol_plot_ruler_label] {\n\tcolor: var(--mol_theme_text);\n}\n\n[mol_plot_ruler_title] {\n\tcolor: var(--mol_theme_shade);\n\tbackground-color: var(--mol_theme_back);\n}\n\n[mol_plot_ruler_background] {\n\tstroke: none;\n\tfill: var(--mol_theme_back);\n\topacity: 0.8;\n}\n");
+})($ || ($ = {}));
+//ruler.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_ruler extends $.$mol_plot_ruler {
+            labels_formatted() {
+                return this.axis_points().map((point, index) => this.Label(index));
+            }
+            step() {
+                const scale = this.scale_step();
+                const dims = this.dimensions_axis();
+                const range = dims.max - dims.min;
+                const min_width = (Math.abs(Math.log10(range)) + 2) * 15;
+                const size = $.$mol_math_round_expand(range, -1);
+                const count = Math.max(1, Math.pow(10, Math.floor(Math.log(size * scale / min_width) / Math.log(10))));
+                let step = size / count;
+                const step_max = min_width * 2 / scale;
+                if (step > step_max)
+                    step /= 2;
+                if (step > step_max)
+                    step /= 2;
+                return Math.max(step, Math.abs(dims.min) / 1e10, Math.abs(dims.max) / 1e10);
+            }
+            snap_to_grid(coord) {
+                const viewport = this.viewport_axis();
+                const scale = this.scale_axis();
+                const shift = this.shift_axis();
+                const step = this.step();
+                const val = Math.round(coord / step) * step;
+                if (scale == 0)
+                    return val;
+                const step_scaled = step * scale;
+                const scaled = val * scale + shift;
+                let count = 0;
+                if (scaled < viewport.min)
+                    count = (scaled - viewport.min) / step_scaled;
+                if (scaled > viewport.max)
+                    count = (scaled - viewport.max) / step_scaled;
+                return val - Math.floor(count) * step;
+            }
+            axis_points() {
+                const dims = this.dimensions_axis();
+                const start = this.snap_to_grid(dims.min);
+                const end = this.snap_to_grid(dims.max);
+                const step = this.step();
+                const next = [];
+                for (let val = start; val <= end; val += step) {
+                    next.push(val);
+                }
+                return next;
+            }
+            precision() {
+                const step = this.step();
+                return Math.max(0, Math.min(15, (step - Math.floor(step)).toString().length - 2));
+            }
+            label_text(index) {
+                const point = this.axis_points()[index];
+                return point.toFixed(this.precision());
+            }
+            font_size() {
+                return this.Background().font_size();
+            }
+            back() {
+                return [this.Curve()];
+            }
+            front() {
+                return [this.Background(), ...this.labels_formatted(), this.Title()];
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_ruler.prototype, "step", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_ruler.prototype, "axis_points", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_ruler.prototype, "precision", null);
+        $$.$mol_plot_ruler = $mol_plot_ruler;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//ruler.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_ruler_vert extends $.$mol_plot_ruler {
+        title_align() {
+            return "end";
+        }
+        label_align() {
+            return "end";
+        }
+        title_pos_y() {
+            return "14";
+        }
+        label_pos_x(v) {
+            return this.title_pos_x();
+        }
+        background_height() {
+            return "100%";
+        }
+        background_width() {
+            return this.title_pos_x();
+        }
+    }
+    $.$mol_plot_ruler_vert = $mol_plot_ruler_vert;
+})($ || ($ = {}));
+//vert.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/ruler/vert/vert.view.css", "[mol_plot_ruler_vert_label] {\n\ttransform: translateY( 4px );\n}\n");
+})($ || ($ = {}));
+//vert.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_ruler_vert extends $.$mol_plot_ruler_vert {
+            dimensions_axis() {
+                return this.dimensions_pane().y;
+            }
+            viewport_axis() {
+                return new this.$.$mol_vector_range(0, this.size_real().y);
+            }
+            scale_axis() {
+                return this.scale()[1];
+            }
+            scale_step() {
+                return -this.scale()[1];
+            }
+            shift_axis() {
+                return this.shift()[1];
+            }
+            curve() {
+                const [, shift] = this.shift();
+                const [, scale] = this.scale();
+                return this.axis_points().map(point => {
+                    const scaled = point * scale + shift;
+                    return `M 0 ${scaled.toFixed(3)} H 2000`;
+                }).join(' ');
+            }
+            title_pos_x() {
+                return String(this.gap().x.min);
+            }
+            label_pos_y(index) {
+                return (this.axis_points()[index] * this.scale()[1] + this.shift()[1]).toFixed(3);
+            }
+        }
+        $$.$mol_plot_ruler_vert = $mol_plot_ruler_vert;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//vert.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_ruler_hor extends $.$mol_plot_ruler {
+        title_align() {
+            return "start";
+        }
+        label_align() {
+            return "middle";
+        }
+        title_pos_x() {
+            return "0";
+        }
+        title_pos_y() {
+            return "100%";
+        }
+        label_pos_y(v) {
+            return this.title_pos_y();
+        }
+        background_width() {
+            return "100%";
+        }
+    }
+    $.$mol_plot_ruler_hor = $mol_plot_ruler_hor;
+})($ || ($ = {}));
+//hor.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/ruler/hor/hor.view.css", "[mol_plot_ruler_hor_label] {\n\ttransform: translateY( -4px );\n}\n\n[mol_plot_ruler_hor_title] {\n\ttransform: translateY( -4px );\n}\n");
+})($ || ($ = {}));
+//hor.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_ruler_hor extends $.$mol_plot_ruler_hor {
+            dimensions_axis() {
+                return this.dimensions_pane().x;
+            }
+            viewport_axis() {
+                return new this.$.$mol_vector_range(0, this.size_real().x);
+            }
+            scale_axis() {
+                return this.scale()[0];
+            }
+            scale_step() {
+                return this.scale()[0];
+            }
+            shift_axis() {
+                return this.shift()[0];
+            }
+            curve() {
+                const [shift] = this.shift();
+                const [scale] = this.scale();
+                return this.axis_points().map(point => {
+                    const scaled = point * scale + shift;
+                    return `M ${scaled.toFixed(3)} 1000 V 0`;
+                }).join(' ');
+            }
+            label_pos_x(index) {
+                return (this.axis_points()[index] * this.scale()[0] + this.shift()[0]).toFixed(3);
+            }
+            background_y() {
+                return String(this.size_real()[1] - this.font_size());
+            }
+            title_pos_y() {
+                return String(this.size_real()[1]);
+            }
+            background_height() {
+                return String(this.font_size());
+            }
+        }
+        $$.$mol_plot_ruler_hor = $mol_plot_ruler_hor;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//hor.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $mol_plot_mark_hor extends $.$mol_plot_ruler_hor {
+        labels() {
+            return [];
+        }
+    }
+    $.$mol_plot_mark_hor = $mol_plot_mark_hor;
+})($ || ($ = {}));
+//hor.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_style_attach("mol/plot/mark/hor/hor.view.css", "[mol_plot_mark_hor_curve] {\n\tcolor: var(--mol_theme_line);\n\tstroke-width: .1%;\n\tstroke: currentColor;\n}\n\n[mol_plot_mark_hor_label] {\n\tcolor: var(--mol_theme_text);\n\ttransform: translateY( -4px );\n}\n\n[mol_plot_mark_hor_title] {\n\tcolor: var(--mol_theme_shade);\n\ttransform: translateY( -4px );\n}\n");
+})($ || ($ = {}));
+//hor.view.css.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        class $mol_plot_mark_hor extends $.$mol_plot_mark_hor {
+            series_x() {
+                return this.labels().map((val, index) => index);
+            }
+            labels() {
+                return this.series_x().map(val => String(val));
+            }
+            visible_indexes() {
+                const series_x = this.series_x();
+                const labels = this.labels();
+                const [shift_x,] = this.shift();
+                const [scale_x,] = this.scale();
+                let step = this.step() * scale_x;
+                const [[viewport_left, viewport_right]] = this.viewport();
+                const size_x = viewport_right - viewport_left;
+                const font_size = this.font_size();
+                let indexes;
+                let labels_width;
+                do {
+                    indexes = [];
+                    labels_width = 0;
+                    let last = 0;
+                    let current = 0;
+                    for (let i = 0; i < series_x.length; i++) {
+                        const point_x = series_x[i];
+                        const scaled_x = (shift_x + point_x * scale_x);
+                        if (scaled_x < viewport_left)
+                            continue;
+                        if (scaled_x > viewport_right)
+                            continue;
+                        if (current === 0)
+                            current = scaled_x;
+                        if (scaled_x < current) {
+                            last = i;
+                            continue;
+                        }
+                        indexes.push(i);
+                        current += step;
+                        last = 0;
+                        labels_width += font_size * (labels[i].length + 1);
+                        if (labels_width > size_x)
+                            break;
+                    }
+                    if (last !== 0) {
+                        indexes.push(last);
+                        labels_width += font_size * (labels[last].length + 1);
+                    }
+                    step *= 1.5;
+                } while (labels_width > size_x && indexes.length > 2);
+                return indexes;
+            }
+            curve() {
+                const [shift] = this.shift();
+                const [scale] = this.scale();
+                const series_x = this.series_x();
+                return this.visible_indexes().map(index => {
+                    const scaled = series_x[index] * scale + shift;
+                    return `M ${scaled.toFixed(3)} 1000 V 0`;
+                }).join(' ');
+            }
+            label_text(index) {
+                return this.labels()[index];
+            }
+            labels_formatted() {
+                return this.visible_indexes().map(index => this.Label(index));
+            }
+            label_pos_x(index) {
+                return (this.series_x()[index] * this.scale()[0] + this.shift()[0]).toFixed(3);
+            }
+            label_pos_y(index) {
+                return this.title_pos_y();
+            }
+        }
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_mark_hor.prototype, "series_x", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_mark_hor.prototype, "labels", null);
+        __decorate([
+            $.$mol_mem
+        ], $mol_plot_mark_hor.prototype, "visible_indexes", null);
+        $$.$mol_plot_mark_hor = $mol_plot_mark_hor;
+    })($$ = $.$$ || ($.$$ = {}));
+})($ || ($ = {}));
+//hor.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    class $psb_ui_chart extends $.$mol_chart {
+        series_x(val) {
+            if (val !== undefined)
+                return val;
+            return [];
+        }
+        graphs() {
+            return [
+                this.Fact(),
+                this.Plan(),
+                this.Amount(),
+                this.Years()
+            ];
+        }
+        series_fact(val) {
+            if (val !== undefined)
+                return val;
+            return [];
+        }
+        Fact_fill() {
+            const obj = new this.$.$mol_plot_fill();
+            return obj;
+        }
+        Fact_line() {
+            const obj = new this.$.$mol_plot_line();
+            return obj;
+        }
+        Fact_dots() {
+            const obj = new this.$.$mol_plot_dot();
+            return obj;
+        }
+        Fact() {
+            const obj = new this.$.$mol_plot_group();
+            obj.title = () => this.$.$mol_locale.text('$psb_ui_chart_Fact_title');
+            obj.series_x = () => this.series_x();
+            obj.series_y = () => this.series_fact();
+            obj.graphs = () => [
+                this.Fact_fill(),
+                this.Fact_line(),
+                this.Fact_dots()
+            ];
+            return obj;
+        }
+        series_plan(val) {
+            if (val !== undefined)
+                return val;
+            return [];
+        }
+        Plan_fill() {
+            const obj = new this.$.$mol_plot_fill();
+            return obj;
+        }
+        Plan_line() {
+            const obj = new this.$.$mol_plot_line();
+            obj.type = () => "dashed";
+            return obj;
+        }
+        Plan_dots() {
+            const obj = new this.$.$mol_plot_dot();
+            return obj;
+        }
+        Plan() {
+            const obj = new this.$.$mol_plot_group();
+            obj.title = () => this.$.$mol_locale.text('$psb_ui_chart_Plan_title');
+            obj.series_x = () => this.series_x();
+            obj.series_y = () => this.series_plan();
+            obj.graphs = () => [
+                this.Plan_fill(),
+                this.Plan_line(),
+                this.Plan_dots()
+            ];
+            return obj;
+        }
+        Amount() {
+            const obj = new this.$.$mol_plot_ruler_vert();
+            obj.title = () => "";
+            return obj;
+        }
+        Years() {
+            const obj = new this.$.$mol_plot_mark_hor();
+            obj.title = () => "";
+            obj.series_x = () => this.series_x();
+            return obj;
+        }
+    }
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "series_x", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "series_fact", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Fact_fill", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Fact_line", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Fact_dots", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Fact", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "series_plan", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Plan_fill", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Plan_line", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Plan_dots", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Plan", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Amount", null);
+    __decorate([
+        $.$mol_mem
+    ], $psb_ui_chart.prototype, "Years", null);
+    $.$psb_ui_chart = $psb_ui_chart;
+})($ || ($ = {}));
+//chart.view.tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_view_component(View) {
+        if (typeof HTMLElement !== 'function')
+            return;
+        class Component extends HTMLElement {
+            constructor() {
+                super(...arguments);
+                this.view = new View;
+            }
+            connectedCallback() {
+                if (!this.shadowRoot) {
+                    this.attachShadow({ mode: 'open' });
+                    this.shadowRoot.append(document.getElementById(`$mol_style_attach`).cloneNode(true), this.view.dom_node());
+                }
+                this.auto = $.$mol_atom2_autorun(() => this.view.dom_tree());
+            }
+            disconnectedCallback() {
+                this.auto.destructor();
+                this.auto = undefined;
+            }
+            attributeChangedCallback(name, prev, next) {
+                this.view[name](JSON.parse(next));
+            }
+        }
+        Component.observedAttributes = new Set;
+        function attributes_observe(proto) {
+            if (!proto)
+                return;
+            if (proto === Reflect.getPrototypeOf({}))
+                return;
+            for (const field of Object.getOwnPropertyNames(proto)) {
+                const descr = Reflect.getOwnPropertyDescriptor(proto, field);
+                if (typeof descr.value !== 'function')
+                    continue;
+                if (descr.value.length === 0)
+                    continue;
+                Component.observedAttributes.add(field);
+            }
+            attributes_observe(Reflect.getPrototypeOf(proto));
+        }
+        attributes_observe(View.prototype);
+        const name = View.name.replace(/\W/g, '').replace(/^(?=\d+)/, '-').replace(/_/g, '-');
+        customElements.define(name, Component);
+    }
+    $.$mol_view_component = $mol_view_component;
+})($ || ($ = {}));
+//component.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_view_component($.$psb_ui_chart);
+})($ || ($ = {}));
+//chart.view.js.map
+;
+"use strict";
+var $;
+(function ($) {
     class $mol_icon_open_in_new extends $.$mol_icon {
         path() {
             return "M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19C3,20.1 3.9,21 5,21H19C20.1,21 21,20.1 21,19V12H19V19Z";
@@ -13277,6 +15609,23 @@ var $;
             obj.rows = () => this.menu_items();
             return obj;
         }
+        stats_years() {
+            return [];
+        }
+        stats_plan() {
+            return [];
+        }
+        stats_fact() {
+            return [];
+        }
+        Stats() {
+            const obj = new this.$.$psb_ui_chart();
+            obj.Legend = () => null;
+            obj.series_x = () => this.stats_years();
+            obj.series_plan = () => this.stats_plan();
+            obj.series_fact = () => this.stats_fact();
+            return obj;
+        }
         Menu_title() {
             return this.Menu().Title();
         }
@@ -13296,7 +15645,8 @@ var $;
                 this.Lights()
             ];
             obj.body = () => [
-                this.Menu_items()
+                this.Menu_items(),
+                this.Stats()
             ];
             return obj;
         }
@@ -13408,6 +15758,9 @@ var $;
     ], $psb_portal.prototype, "Menu_items", null);
     __decorate([
         $.$mol_mem
+    ], $psb_portal.prototype, "Stats", null);
+    __decorate([
+        $.$mol_mem
     ], $psb_portal.prototype, "Menu", null);
     __decorate([
         $.$mol_mem_key
@@ -13431,7 +15784,69 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $.$mol_style_attach("psb/portal/portal.view.css", "[psb_portal_menu] {\n\tflex: 0 0 20rem;\n}\n\n[psb_portal_menu_title] {\n\tflex-basis: auto;\n}\n\n[psb_portal_logo] {\n\tmargin-left:.75rem;\n}\n\n[psb_portal_menu_link_in] {\n\tflex-grow: 1;\n}\n\n[psb_portal_app] {\n\tflex: 1 0 25rem;\n}\n");
+    function $mol_data_integer(val) {
+        const val2 = $.$mol_data_number(val);
+        if (Math.floor(val2) === val2)
+            return val2;
+        return $.$mol_fail(new $.$mol_data_error(`${val} is not an integer`));
+    }
+    $.$mol_data_integer = $mol_data_integer;
+})($ || ($ = {}));
+//integer.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    var $$;
+    (function ($$) {
+        const { rem } = $.$mol_style_unit;
+        $.$mol_style_define($$.$psb_portal, {
+            Menu: {
+                flex: {
+                    grow: 0,
+                    shrink: 0,
+                    basis: rem(20),
+                },
+                Title: {
+                    flex: {
+                        basis: 'auto',
+                    }
+                },
+                Body: {
+                    padding: 0,
+                    justifyContent: 'space-between',
+                },
+            },
+            Logo: {
+                margin: {
+                    left: rem(.75),
+                },
+            },
+            Menu_items: {
+                padding: $.$mol_gap.block,
+            },
+            Menu_link_in: {
+                flex: {
+                    grow: 1,
+                },
+            },
+            App: {
+                flex: {
+                    grow: 1,
+                    shrink: 0,
+                    basis: rem(25),
+                },
+            },
+            Stats: {
+                flex: {
+                    grow: 0,
+                    shrink: 1,
+                    basis: rem(20),
+                },
+                padding: 0,
+            },
+        });
+    })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
 //portal.view.css.js.map
 ;
@@ -13440,6 +15855,11 @@ var $;
 (function ($) {
     var $$;
     (function ($$) {
+        const Stats_response = $.$mol_data_record({
+            years: $.$mol_data_array($.$mol_data_integer),
+            plan: $.$mol_data_array($.$mol_data_number),
+            fact: $.$mol_data_array($.$mol_data_number),
+        });
         class $psb_portal extends $.$psb_portal {
             app() {
                 return this.$.$mol_state_arg.value('app');
@@ -13482,6 +15902,12 @@ var $;
             deposits_title() {
                 return this.data().deposits.title;
             }
+            stats() {
+                return Stats_response(this.$.$mol_fetch.json('psb/portal/portal_stats.json'));
+            }
+            stats_years() { return this.stats().years; }
+            stats_plan() { return this.stats().plan; }
+            stats_fact() { return this.stats().fact; }
         }
         __decorate([
             $.$mol_mem
@@ -13489,6 +15915,9 @@ var $;
         __decorate([
             $.$mol_mem_key
         ], $psb_portal.prototype, "app_uri", null);
+        __decorate([
+            $.$mol_mem
+        ], $psb_portal.prototype, "stats", null);
         $$.$psb_portal = $psb_portal;
     })($$ = $.$$ || ($.$$ = {}));
 })($ || ($ = {}));
@@ -13496,52 +15925,6 @@ var $;
 ;
 var $node = $node || {} ; $node[ "/psb/portal/portal_logo.svg" ] = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAiIGhlaWdodD0iMzAiIHZpZXdCb3g9IjAgMCAzMCAzMCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgIDxwYXRoIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiBkPSJNMTkuOTQ5MiAwTDkuOTc0NjEgMTAuMDAwM0gxOS45NDkyVjMwTDI5LjkyMzggMjAuMDI0MVYwSDE5Ljk0OTJaIiBmaWxsPSIjRjI2MTI2Ij48L3BhdGg+CiAgICA8cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTkuOTc0NiAzMEwxOS45NDkyIDIwSDkuOTc0NlYwTDAgOS45NzYxOFYzMEg5Ljk3NDZaIiBmaWxsPSIjY2NjIj48L3BhdGg+Cjwvc3ZnPgo="
 
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_env() {
-        return {};
-    }
-    $.$mol_env = $mol_env;
-})($ || ($ = {}));
-//env.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    $.$mol_env = function $mol_env() {
-        return this.process.env;
-    };
-})($ || ($ = {}));
-//env.node.js.map
-;
-"use strict";
-var $;
-(function ($) {
-    function $mol_exec(dir, command, ...args) {
-        let [app, ...args0] = command.split(' ');
-        args = [...args0, ...args];
-        this.$mol_log3_come({
-            place: '$mol_exec',
-            dir: $node.path.relative('', dir),
-            message: 'Run',
-            command: `${app} ${args.join(' ')}`,
-        });
-        var res = $node['child_process'].spawnSync(app, args, {
-            cwd: $node.path.resolve(dir),
-            shell: true,
-            env: this.$mol_env(),
-        });
-        if (res.status || res.error)
-            return $.$mol_fail(res.error || new Error(res.stderr.toString()));
-        if (!res.stdout)
-            res.stdout = Buffer.from([]);
-        return res;
-    }
-    $.$mol_exec = $mol_exec;
-})($ || ($ = {}));
-//exec.node.js.map
 ;
 "use strict";
 var $;
@@ -13953,6 +16336,52 @@ var $;
     $.$mol_view_tree_compile = $mol_view_tree_compile;
 })($ || ($ = {}));
 //tree.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_env() {
+        return {};
+    }
+    $.$mol_env = $mol_env;
+})($ || ($ = {}));
+//env.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    $.$mol_env = function $mol_env() {
+        return this.process.env;
+    };
+})($ || ($ = {}));
+//env.node.js.map
+;
+"use strict";
+var $;
+(function ($) {
+    function $mol_exec(dir, command, ...args) {
+        let [app, ...args0] = command.split(' ');
+        args = [...args0, ...args];
+        this.$mol_log3_come({
+            place: '$mol_exec',
+            dir: $node.path.relative('', dir),
+            message: 'Run',
+            command: `${app} ${args.join(' ')}`,
+        });
+        var res = $node['child_process'].spawnSync(app, args, {
+            cwd: $node.path.resolve(dir),
+            shell: true,
+            env: this.$mol_env(),
+        });
+        if (res.status || res.error)
+            return $.$mol_fail(res.error || new Error(res.stderr.toString()));
+        if (!res.stdout)
+            res.stdout = Buffer.from([]);
+        return res;
+    }
+    $.$mol_exec = $mol_exec;
+})($ || ($ = {}));
+//exec.node.js.map
 ;
 "use strict";
 var $;

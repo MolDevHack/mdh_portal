@@ -11,5 +11,7 @@
 	"$psb_portal_data_deposits_title": "Deposit Calc",
 	"$psb_portal_data_events_title": "Events",
 	"$psb_portal_data_questions_title": "Questions?",
-	"$psb_portal_data_tech_title": "Our Technologies"
+	"$psb_portal_data_tech_title": "Our Technologies",
+	"$psb_ui_chart_Fact_title": "Fact",
+	"$psb_ui_chart_Plan_title": "Plan"
 }
