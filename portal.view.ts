@@ -1,5 +1,11 @@
 namespace $.$$ {
 
+	const Stats_response = $mol_data_record({
+		years: $mol_data_array( $mol_data_integer ),
+		plan: $mol_data_array( $mol_data_number ),
+		fact: $mol_data_array( $mol_data_number ),
+	})
+	
 	export class $psb_portal extends $.$psb_portal {
 
 		app() {
@@ -50,6 +56,15 @@ namespace $.$$ {
 		deposits_title() {
 			return this.data().deposits.title
 		}
+		
+		@ $mol_mem
+		stats() {
+			return Stats_response( this.$.$mol_fetch.json( 'psb/portal/portal_stats.json' ) )
+		}
+		
+		stats_years() { return this.stats().years }
+		stats_plan() { return this.stats().plan }
+		stats_fact() { return this.stats().fact }
 		
 	}
 
