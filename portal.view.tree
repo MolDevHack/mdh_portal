@@ -18,6 +18,20 @@ $psb_portal $mol_book2
 			body /
 				<= Menu_items $mol_list
 					rows <= menu_items /$mol_view
+				<= Stats $psb_ui_chart
+					Legend null
+					series_x /
+						2019
+						2020
+						2021
+					series_plan /
+						100
+						200
+						400
+					series_fact /
+						0
+						300
+						800
 	Menu_item!id $mol_view
 		sub /
 			<= Menu_link_in!id $mol_link
