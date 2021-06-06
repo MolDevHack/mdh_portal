@@ -34,7 +34,9 @@ Then open the app:
 http://localhost:9080/psb/portal/-/test.html
 ```
 
-## Build release
+Tests will run automatically on page start.
+
+## Build Release & Test It
 
 ```
 npm start psb/portal
