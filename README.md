@@ -46,4 +46,4 @@ ls psb/portal/-
 - [Video course](https://www.youtube.com/playlist?list=PLXyFFhv8ucKRBg76o0YXnmQFT1LglSaND)
 - [Tutotials](https://github.com/hyoo-ru/mam_mol#tutorials)
 - [Speeches](https://slides.hyoo.ru/)
-- [Documantation](https://mol.hyoo.ru/)
+- [Documentation](https://mol.hyoo.ru/)
