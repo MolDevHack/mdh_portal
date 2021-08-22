@@ -18,7 +18,7 @@ namespace $.$$ {
 			
 			$mol_assert_equal(
 				app.app_uri( 'test' ),
-				'https://example.org/#/mol_lights=on',
+				'https://example.org/#/mol_lights=true',
 			)
 			
 		},
@@ -39,7 +39,7 @@ namespace $.$$ {
 			
 			$mol_assert_equal(
 				app.app_uri( 'test' ),
-				'https://example.org/#/mol_lights=off',
+				'https://example.org/#/mol_lights=false',
 			)
 			
 		},

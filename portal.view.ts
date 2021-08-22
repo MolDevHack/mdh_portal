@@ -35,9 +35,9 @@ namespace $.$$ {
 
 		@ $mol_mem_key
 		app_uri( app: string, next?: string ) {
-			const suffix =  '/mol_lights=' + ( this.$.$mol_lights() ? 'on' : 'off' )
+			const suffix =  '/mol_lights=' + String( this.$.$mol_lights() )
 			if( this.app() === app ) {
-				if( next ) next = next.replace( /\/mol_lights=(on|off)/, '' )
+				if( next ) next = next.replace( /\/mol_lights=(true|false)/, '' )
 				const uri = this.$.$mol_state_arg.value( 'uri', next  )
 				return ( uri ?? this.data()[ app ].uri ) + suffix
 			} else {
