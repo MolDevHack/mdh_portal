@@ -15,10 +15,11 @@ $mol_book2 $mol_scroll
 	minimal_width 0
 	Placeholder $mol_view
 
-$mol_frame $mol_view
+$mol_frame $mol_scroll
 	dom_name \iframe
 	attr *
 		src <= uri?val \
+		srcdoc <= html null
 		allow <= allow \
 	fullscreen true
 	accelerometer true
@@ -130,6 +131,63 @@ $mol_icon $mol_svg_root
 
 $mol_icon_cross $mol_icon path \M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z
 
+$mol_paragraph $mol_view
+	line_height 24
+	letter_width 7
+	width_limit Infinity
+	sub / <= title
+
+$mol_dimmer $mol_paragraph
+	haystack \
+	needle \
+	sub <= parts /$mol_view_content
+	Low!id $mol_paragraph
+		sub /
+			<= string!id \
+	High!id $mol_paragraph
+		sub /
+			<= string!id \
+
+$mol_text_code_token $mol_dimmer
+	attr *
+		^
+		mol_text_code_token_type <= type \
+
+$mol_text_code_token_link $mol_text_code_token
+	dom_name \a
+	type \code-link
+	attr *
+		^
+		href <= haystack \
+		target \_blank
+
+$mol_text_code_row $mol_paragraph
+	text \
+	minimal_height 24
+	numb_showed true
+	Numb $mol_view
+		sub /
+			<= numb 0
+	Token!id $mol_text_code_token
+		type <= token_type!id \
+		haystack <= token_text!id \
+		needle <= highlight \
+	Token_link!id $mol_text_code_token_link
+		haystack <= token_text!id \
+		needle <= highlight \
+
+$mol_text_code $mol_list
+	attr *
+		^
+		mol_text_code_sidebar_showed <= sidebar_showed false
+	text \
+	text_lines /string
+	Row!id $mol_text_code_row
+		numb_showed <= sidebar_showed
+		numb <= row_numb!id 0
+		text <= row_text!id \
+		highlight <= highlight \
+
 $mol_float $mol_view
 	style *
 		^
@@ -193,24 +251,7 @@ $mol_check_expand $mol_check
 	checked?val <=> expanded?val false
 	enabled <= expandable false
 
-$mol_paragraph $mol_view
-	line_height 24
-	letter_width 8
-	width_limit Infinity
-	sub / <= title
-
-$mol_dimmer $mol_paragraph
-	haystack \
-	needle \
-	sub <= parts /$mol_view_content
-	Low!id $mol_paragraph
-		sub /
-			<= string!id \
-	High!id $mol_paragraph
-		sub /
-			<= string!id \
-
-$mol_grid $mol_scroll
+$mol_grid $mol_view
 	row_height 32
 	row_ids /string[]
 	row_id!index null
@@ -267,6 +308,7 @@ $mol_image $mol_view
 		^
 		src <= uri \
 		alt <= title
+		loading <= loading \lazy
 
 $mol_link_iconed $mol_link
 	sub /
@@ -287,12 +329,17 @@ $mol_text $mol_list
 		sub <= block_content!id /
 		type <= block_type!id \
 	Span!id $mol_text_span
+	String!id $mol_text_string
+		needle <= highlight \
 	Link!id $mol_text_link
 		target <= link_target!id \_blank
 	Image!id $mol_text_image
 	Header!id $mol_text_header
 		level <= header_level!id 0
 		content <= header_content!id /
+	Code!id $mol_text_code
+		text <= code_text!id \
+		highlight <= highlight \
 	Table!id $mol_grid
 		head_cells <= table_head_cells!id /
 		rows <= table_rows!id /
@@ -321,6 +368,10 @@ $mol_text_span $mol_paragraph
 		^
 		mol_text_type <= type?val \
 	sub <= content?val /
+
+$mol_text_string $mol_dimmer
+	dom_name \span
+	haystack?val \
 
 $mol_text_link $mol_link_iconed
 	attr *
@@ -597,14 +648,18 @@ $mol_touch $mol_plugin
 	start_zoom?val 0
 	start_distance?val 0
 	zoom?val 1
+	action_type?val \
+	action_point?val $mol_vector_2d /
+		NaN
+		NaN
 	-
 	start_pan?val /
 		0
 		0
-	pan?val /
+	pan?val $mol_vector_2d /
 		0
 		0
-	pos?val /
+	pointer_center $mol_vector_2d /
 		NaN
 		NaN
 	-
@@ -626,6 +681,8 @@ $mol_touch $mol_plugin
 	swipe_to_left?val null
 	swipe_to_top?val null
 	-
+	draw?event null
+	-
 	style *
 		^
 		touch-action \none
@@ -633,14 +690,12 @@ $mol_touch $mol_plugin
 	-
 	event *
 		^
-		touchstart?event <=> event_start?event null
-		touchmove?event <=> event_move?event null
-		touchend?event <=> event_end?event null
-		mousedown?event <=> event_start?event null
-		mousemove?event <=> event_move?event null
-		mouseup?event <=> event_end?event null
-		mouseleave?event <=> event_leave?event null
+		pointerdown?event <=> event_start?event null
+		pointermove?event <=> event_move?event null
+		pointerup?event <=> event_end?event null
+		pointerleave?event <=> event_end?event null
 		wheel?event <=> event_wheel?event null
+		contextmenu?event <=> event_menu?event null
 
 $mol_ghost $mol_view
 	Sub $mol_view
@@ -698,7 +753,7 @@ $mol_string $mol_view
 		^
 		disabled <= disabled false
 		value <= value_changed?val <=> value?val \
-		placeholder <= hint \
+		placeholder <= hint \ 
 		spellcheck <= spellcheck false
 		autocomplete <= autocomplete_native \
 		selectionEnd <= selection_end 0
@@ -714,46 +769,6 @@ $mol_string $mol_view
 	plugins /
 		<= Submit $mol_hotkey
 			key * enter?event <=> submit?event null
-
-$mol_text_code_token $mol_dimmer
-	attr *
-		^
-		mol_text_code_token_type <= type \
-
-$mol_text_code_token_link $mol_text_code_token
-	dom_name \a
-	type \code-link
-	attr *
-		^
-		href <= haystack \
-		target \_blank
-
-$mol_text_code_row $mol_paragraph
-	text \
-	minimal_height 24
-	numb_showed true
-	Numb $mol_view
-		sub /
-			<= numb 0
-	Token!id $mol_text_code_token
-		type <= token_type!id \
-		haystack <= token_text!id \
-		needle <= highlight \
-	Token_link!id $mol_text_code_token_link
-		haystack <= token_text!id \
-		needle <= highlight \
-
-$mol_text_code $mol_list
-	attr *
-		^
-		mol_text_code_sidebar_showed <= sidebar_showed false
-	text \
-	text_lines /string
-	Row!id $mol_text_code_row
-		numb_showed <= sidebar_showed
-		numb <= row_numb!id 0
-		text <= row_text!id \
-		highlight <= highlight \
 
 $mol_textarea $mol_view
 	attr *
@@ -776,6 +791,7 @@ $mol_textarea $mol_view
 			render_visible_only false
 			row_numb!index <= row_numb!index 0
 			sidebar_showed <= sidebar_showed
+			highlight <= highlight \
 
 $mol_icon_stored $mol_icon path \M10.5,17.5L7,14L8.41,12.59L10.5,14.67L15.68,9.5L17.09,10.91M10,4H14V6H10M20,6H16V4L14,2H10L8,4V6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z
 
@@ -813,8 +829,8 @@ $mol_nav $mol_plugin
 	keys_x?val /
 	keys_y?val /
 	-
-	current_x?val \
-	current_y?val \
+	current_x?val null
+	current_y?val null
 	-
 	event_up?event null
 	event_down?event null
@@ -849,9 +865,9 @@ $hyoo_calc $mol_page
 		<= Head
 		<= Current $mol_bar
 			sub /
-				<= Pos $mol_string
+				<= Pos $mol_button_minor
 					enabled false
-					value <= pos?val \A1
+					title <= pos?val \A1
 				<= Edit_current $mol_textarea
 				<= Hint_trigger $mol_check_icon
 					checked?val <=> hint_showed?val false
@@ -860,7 +876,10 @@ $hyoo_calc $mol_page
 			text <= hint @ \
 				\**$.A1** - result of A1, **$$.A1** - formula of A1, **a=** - define variable, **_.a** - value of variable, **__.a** - cell id of variable, **A1:C3** - range of cells, use [**JavaScript**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) for other.
 				\**Available funcs**: {funcs}.
-		<= Body $mol_grid
+				\Use Alt + Arrows to switch between cells.
+		<= Body
+	body /
+		<= Cells $mol_grid
 			col_ids <= col_ids /
 			row_ids <= row_ids /
 			head_cells <= head_cells /
@@ -883,7 +902,7 @@ $hyoo_calc $mol_page
 			mod_alt true
 			keys_x <= col_ids /
 			keys_y <= row_ids /
-			current_x?val <=> current_col?val \A
+			current_x?val <=> current_col?val 1
 			current_y?val <=> current_row?val 1
 	event *
 		paste?event <=> paste?event null
@@ -906,6 +925,11 @@ $mol_lights_toggle $mol_check_icon
 
 $mol_svg_group $mol_svg
 	dom_name \g
+
+$mol_svg_title $mol_svg
+	dom_name \title
+	sub /
+		<= title
 
 $mol_plot_graph $mol_svg_group
 	series_x /number
@@ -963,6 +987,8 @@ $mol_plot_graph $mol_svg_group
 	points /readonly(number)[]
 	front /$mol_svg
 	back /$mol_svg
+	Hint $mol_svg_title
+		title <= hint <= title \
 	hue NaN
 	Sample null
 
@@ -1014,10 +1040,10 @@ $mol_plot_pane $mol_svg_root
 		<= shift_limit_y $mol_vector_range /
 			0
 			0
-	shift_default /number
+	shift_default $mol_vector_2d /
 		0
 		0
-	shift?val /number
+	shift?val $mol_vector_2d /
 		0
 		0
 	scale_limit $mol_vector_2d /
@@ -1026,28 +1052,21 @@ $mol_plot_pane $mol_svg_root
 			Infinity
 		<= scale_limit_y $mol_vector_range /
 			0
-			Infinity
-	scale_default /number
+			-Infinity
+	scale_default $mol_vector_2d /
 		0
 		0
-	scale?val /number
+	scale?val $mol_vector_2d /
 		1
-		1
-	scale_x?val 0
-	scale_y?val 0
+		-1
+	scale_x?val 1
+	scale_y?val -1
 	size $mol_vector_2d /
 		0
 		0
 	size_real $mol_vector_2d /
 		1
 		1
-	dimensions_viewport $mol_vector_2d /
-		<= dimensions_viewport_x $mol_vector_range /
-			Infinity
-			-Infinity
-		<= dimensions_viewport_y $mol_vector_range /
-			Infinity
-			-Infinity
 	dimensions $mol_vector_2d /
 		<= dimensions_x $mol_vector_range /
 			Infinity
@@ -1055,22 +1074,26 @@ $mol_plot_pane $mol_svg_root
 		<= dimensions_y $mol_vector_range /
 			Infinity
 			-Infinity
+	dimensions_viewport $mol_vector_2d /
+		<= dimensions_viewport_x $mol_vector_range /
+			Infinity
+			-Infinity
+		<= dimensions_viewport_y $mol_vector_range /
+			Infinity
+			-Infinity
 	-
 	sub <= graphs_sorted /$mol_svg
-	graphs_colored <= graphs_positioned <= graphs /$mol_plot_graph
-	cursor_position?val $mol_vector_2d /
-		NaN
-		NaN
+	graphs_colored <= graphs_positioned <= graphs_visible <= graphs /$mol_plot_graph
 	-
 	plugins /
 		^
-		<= Meter $mol_meter
-			width => width
-			height => height
 		<= Touch $mol_touch
-			zoom?val <=> scale_x?val
+			zoom?val <=> zoom?val 1
 			pan?val <=> shift?val
-			pos?val <=> cursor_position?val
+			pointer_center => cursor_position
+			action_type => action_type
+			action_point => action_point
+			draw?event <=> draw?event null
 	event *
 		^
 		dblclick?event <=> reset?event null
@@ -1087,6 +1110,8 @@ $mol_chart $mol_view
 		<= Legend $mol_chart_legend
 			graphs <= graphs_colored
 		<= Plot $mol_plot_pane
+			scale_x?val => zoom?val
+			zoom?val <=> zoom?val
 			gap_left <= gap_left
 			gap_right <= gap_right
 			gap_bottom <= gap_bottom
@@ -1096,33 +1121,32 @@ $mol_chart $mol_view
 			hue_base <= hue_base 140
 			hue_shift <= hue_shift 111
 
-$mol_plot_fill $mol_plot_graph
-	threshold 4
-	spacing 2
-	sub /
-		<= Curve $mol_svg_path
-			geometry <= curve \
-	Sample $mol_plot_graph_sample
-		color <= color
-
 $mol_plot_line $mol_plot_graph
 	threshold 1
 	spacing 2
 	color_fill \none
+	dom_name \path
+	attr *
+		^
+		d <= curve \
 	sub /
-		<= Curve $mol_svg_path
-			geometry <= curve \
+		<= Hint
 	-
 	Sample $mol_plot_graph_sample
 		color <= color
 		type <= type
 
+$mol_plot_fill $mol_plot_line
+	threshold 4
+
 $mol_plot_dot $mol_plot_graph
 	points_max Infinity
+	aspect 1
 	style *
 		^
 		stroke-width <= diameter 8
 	sub /
+		<= Hint
 		<= Curve $mol_svg_path
 			geometry <= curve \
 	-
@@ -1353,42 +1377,6 @@ $psb_portal $mol_book2
 		tech *
 			title @ \Our Technologies
 			uri \https://mol.hyoo.ru/#
-
-$mol_view_tree_test_attributes_super $mol_view
-	some *
-		a 0
-		b 2
-
-$mol_view_tree_test_attributes $mol_view_tree_test_attributes_super
-	some *
-		^
-		a 1
-
-$mol_view_tree_test_binding $mol_view
-	value?val <=> task_title_new?val \123
-	enabled <= head_complete_enabled false
-
-$mol_view_tree_test_binding_right $mol_view
-	Test $mol_view_tree_test_binding_right_test
-		width?v => outer_width?v
-
-$mol_view_tree_test_binding_right_test $mol_view
-	width?val 0
-
-$mol_view_tree_test_simple $mol_view
-	some 1
-	bool true
-	str \test
-	arr /
-	arr_string /string
-
-$mol_view_tree_test_attributes_subcomponent $mol_view
-	- Comment
-	Page!index $mol_view_tree_test_attributes_subcomponent_page
-		Sub <= page!index null
-
-$mol_view_tree_test_attributes_subcomponent_page $mol_view
-	Sub null
 
 $mol_icon_medium $mol_icon path \M4.37,7.3C4.4,7.05 4.3,6.81 4.12,6.65L2.25,4.4V4.06H8.05L12.53,13.89L16.47,4.06H22V4.4L20.4,5.93C20.27,6.03 20.2,6.21 20.23,6.38V17.62C20.2,17.79 20.27,17.97 20.4,18.07L21.96,19.6V19.94H14.12V19.6L15.73,18.03C15.89,17.88 15.89,17.83 15.89,17.59V8.5L11.4,19.9H10.8L5.57,8.5V16.14C5.5,16.46 5.63,16.78 5.86,17L7.96,19.57V19.9H2V19.57L4.1,17C4.33,16.78 4.43,16.46 4.37,16.14V7.3Z
 
