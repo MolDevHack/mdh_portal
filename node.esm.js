@@ -8476,9 +8476,6 @@ var $;
             const obj = new this.$.$piterjs_speech();
             return obj;
         }
-        minimal_width() {
-            return 600;
-        }
         tools() {
             return [
                 this.Close()

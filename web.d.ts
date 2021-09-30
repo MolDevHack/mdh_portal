@@ -2459,7 +2459,6 @@ declare namespace $.$$ {
 declare namespace $ {
     class $piterjs_speech_page extends $mol_page {
         speech(): $piterjs_speech;
-        minimal_width(): number;
         tools(): readonly any[];
         body(): readonly any[];
         Close_icon(): $mol_icon_cross;
