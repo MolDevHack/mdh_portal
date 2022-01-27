@@ -15,9 +15,21 @@ $mol_book2 $mol_scroll
 	minimal_width 0
 	Placeholder $mol_view
 
-$mol_frame $mol_scroll
+$mol_embed_native $mol_scroll
+	dom_name \object
+	window null
+	attr *
+		^
+		data <= uri?val \
+		type <= mime \
+	sub /
+		<= title?val \
+
+$mol_frame $mol_embed_native
 	dom_name \iframe
 	attr *
+		data null
+		type null
 		src <= uri?val \
 		srcdoc <= html null
 		allow <= allow \
@@ -29,9 +41,11 @@ $mol_frame $mol_scroll
 	pip true
 
 $mol_page $mol_view
+	dom_name \article
 	sub /
 		<= Head $mol_view
 			minimal_height 64
+			dom_name \header
 			sub <= head /
 				<= Title $mol_view
 					dom_name \h1
@@ -43,6 +57,7 @@ $mol_page $mol_view
 			scroll_top?val <=> body_scroll_top?val 0
 			sub <= body /$mol_view_content
 		<= Foot $mol_view
+			dom_name \footer
 			sub <= foot /$mol_view
 
 $mol_link $mol_view
@@ -132,6 +147,7 @@ $mol_icon $mol_svg_root
 $mol_icon_cross $mol_icon path \M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z
 
 $mol_paragraph $mol_view
+	dom_name \p
 	line_height 24
 	letter_width 7
 	width_limit Infinity
@@ -206,6 +222,7 @@ $mol_speck $mol_view
 $mol_button $mol_view
 	enabled true
 	minimal_height 40
+	minimal_width 40
 	click?event null
 	event_click?event null
 	event *
@@ -388,7 +405,9 @@ $mol_text_image $mol_view
 		mol_text_type <= type?val \
 		data <= link?val \
 	sub /
-		<= title?val \
+		<= Image $mol_image
+			uri <= link
+			title <= title?val \
 
 $piterjs_meetup_page $mol_page
 	meetup $piterjs_meetup
@@ -603,18 +622,19 @@ $piterjs_app $mol_view
 		title \Митапы
 		tools <= tools /
 		body /
-			<= Meetups $mol_list rows <= menu_meetups /
-			<= Links $mol_list rows /
-				<= Conf $mol_link
-					uri \https://conf.piterjs.org/
-					sub /
-						<= Conf_title $mol_view
-							sub / \Conf
-						<= Conf_date $mol_view
-							sub / \сентябрь'19
-				<= Others_link $mol_link
-					uri \#others
-					title \Другие события
+			<= Menu_content $mol_view sub /
+				<= Meetups $mol_list rows <= menu_meetups /
+				<= Links $mol_list rows /
+					<= Conf $mol_link
+						uri \https://conf.piterjs.org/
+						sub /
+							<= Conf_title $mol_view
+								sub / \Conf
+							<= Conf_date $mol_view
+								sub / \сентябрь'19
+					<= Others_link $mol_link
+						uri \#others
+						title \Другие события
 	Meetup!id $piterjs_meetup_page
 		meetup <= meetup!id $piterjs_meetup
 	Speech!id $piterjs_speech_page
@@ -631,105 +651,6 @@ $piterjs_app $mol_view
 	Place $piterjs_place_page
 		place <= place $piterjs_place
 	Others $piterjs_others
-
-$mol_meter $mol_plugin
-	zoom 1
-	-
-	width?val 0
-	height?val 0
-	-
-	left?val 0
-	right?val 0
-	bottom?val 0
-	top?val 0
-
-$mol_touch $mol_plugin
-	start_zoom?val 0
-	start_distance?val 0
-	zoom?val 1
-	action_type?val \
-	action_point?val $mol_vector_2d /
-		NaN
-		NaN
-	-
-	start_pan?val /
-		0
-		0
-	pan?val $mol_vector_2d /
-		0
-		0
-	pointer_center $mol_vector_2d /
-		NaN
-		NaN
-	-
-	start_pos?val null
-	swipe_precision 16
-	-
-	swipe_right?val null
-	swipe_bottom?val null
-	swipe_left?val null
-	swipe_top?val null
-	-
-	swipe_from_right?val null
-	swipe_from_bottom?val null
-	swipe_from_left?val null
-	swipe_from_top?val null
-	-
-	swipe_to_right?val null
-	swipe_to_bottom?val null
-	swipe_to_left?val null
-	swipe_to_top?val null
-	-
-	draw?event null
-	-
-	style *
-		^
-		touch-action \none
-		overscroll-behavior \none
-	-
-	event *
-		^
-		pointerdown?event <=> event_start?event null
-		pointermove?event <=> event_move?event null
-		pointerup?event <=> event_end?event null
-		pointerleave?event <=> event_end?event null
-		wheel?event <=> event_wheel?event null
-		contextmenu?event <=> event_menu?event null
-
-$mol_ghost $mol_view
-	Sub $mol_view
-
-$mol_book $mol_view
-	sub <= pages_wrapped /$mol_view
-	minimal_width 0
-	pages /$mol_view
-	plugins /$mol_plugin
-		<= Meter $mol_meter
-			width => width
-		<= Touch $mol_touch
-			swipe_from_left?val <=> event_front_up?val null
-			swipe_to_left?val <=> event_front_down?val null
-	Page!index $mol_book_page
-		Sub <= page!index null
-		visible <= page_visible!index true
-	Placeholder $mol_book_placeholder
-		title <= title
-
-$mol_book_placeholder $mol_view
-	minimal_width 400
-	attr *
-		^
-		tabindex null
-
-$mol_book_page $mol_ghost
-	attr_static *
-		^
-		tabindex 0
-		mol_book_page_visible true
-	attr *
-		^
-		mol_book_page_focused <= focused
-		mol_book_page_visible <= visible true
 
 $mol_hotkey $mol_plugin
 	event *
@@ -778,10 +699,9 @@ $mol_textarea $mol_view
 		keydown?event <=> press?event null
 		pointermove?event <=> hover?event null
 	sub /
-		<= Edit $mol_string
-			dom_name \textarea
+		<= Edit $mol_textarea_edit
 			value?val <=> value?val \
-			hint <= hint \
+			hint <= hint \ 
 			enabled <= enabled true
 			length_max <= length_max Infinity
 			selection?val <=> selection?val /number
@@ -791,6 +711,12 @@ $mol_textarea $mol_view
 			row_numb!index <= row_numb!index 0
 			sidebar_showed <= sidebar_showed
 			highlight <= highlight \
+
+$mol_textarea_edit $mol_string
+	dom_name \textarea
+	field *
+		^
+		scrollTop 0
 
 $mol_icon_stored $mol_icon path \M10.5,17.5L7,14L8.41,12.59L10.5,14.67L15.68,9.5L17.09,10.91M10,4H14V6H10M20,6H16V4L14,2H10L8,4V6H4C2.89,6 2,6.89 2,8V19C2,20.11 2.89,21 4,21H20C21.11,21 22,20.11 22,19V8C22,6.89 21.11,6 20,6Z
 
@@ -982,6 +908,8 @@ $mol_plot_graph $mol_svg_group
 		<= gap_y $mol_vector_range /
 			0
 			0
+	repos_x!val 0
+	repos_y!val 0
 	indexes /number
 	points /readonly(number)[]
 	front /$mol_svg
@@ -1001,6 +929,7 @@ $mol_plot_graph_sample $mol_view
 
 $mol_chart_legend $mol_scroll
 	graphs /$mol_plot_graph
+	graphs_front /$mol_plot_graph
 	sub <= graph_legends /$mol_view
 	-
 	Graph_legend!id $mol_view
@@ -1011,6 +940,63 @@ $mol_chart_legend $mol_scroll
 			<= Graph_title!id $mol_view
 				sub /
 					<= graph_title!id \
+
+$mol_touch $mol_plugin
+	start_zoom?val 0
+	start_distance?val 0
+	zoom?val 1
+	allow_draw true
+	allow_pan true
+	allow_zoom true
+	action_type?val \
+	action_point?val $mol_vector_2d /
+		NaN
+		NaN
+	-
+	start_pan?val /
+		0
+		0
+	pan?val $mol_vector_2d /
+		0
+		0
+	pointer_center $mol_vector_2d /
+		NaN
+		NaN
+	-
+	start_pos?val null
+	swipe_precision 16
+	-
+	swipe_right?val null
+	swipe_bottom?val null
+	swipe_left?val null
+	swipe_top?val null
+	-
+	swipe_from_right?val null
+	swipe_from_bottom?val null
+	swipe_from_left?val null
+	swipe_from_top?val null
+	-
+	swipe_to_right?val null
+	swipe_to_bottom?val null
+	swipe_to_left?val null
+	swipe_to_top?val null
+	-
+	draw_start?event null
+	draw?event null
+	draw_end?event null
+	-
+	style *
+		^
+		touch-action \none
+		overscroll-behavior \none
+	-
+	event *
+		^
+		pointerdown?event <=> event_start?event null
+		pointermove?event <=> event_move?event null
+		pointerup?event <=> event_end?event null
+		pointerleave?event <=> event_leave?event null
+		wheel?event <=> event_wheel?event null
 
 $mol_plot_pane $mol_svg_root
 	aspect \none
@@ -1090,10 +1076,15 @@ $mol_plot_pane $mol_svg_root
 			zoom?val <=> zoom?val 1
 			pan?val <=> shift?val
 			pointer_center => cursor_position
+			allow_draw <= allow_draw true
+			allow_pan <= allow_pan true
+			allow_zoom <= allow_zoom true
 			action_type => action_type
 			action_point => action_point
+			draw_start?event <=> draw_start?event null
 			draw?event <=> draw?event null
-	event *
+			draw_end?event <=> draw_end?event null
+	- event *
 		^
 		dblclick?event <=> reset?event null
 
